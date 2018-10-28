@@ -1,13 +1,30 @@
-import 'dart:async';
-
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ScaffoldFactory {
-  static const MethodChannel _channel =
-      const MethodChannel('scaffold_factory');
+  GlobalKey<ScaffoldState> scaffoldKey;
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey) {
+    return ScaffoldFactory._internal(scaffoldKey);
   }
+
+  ScaffoldFactory._internal(this.scaffoldKey);
+}
+
+abstract class BackButtonBehavior {
+  VoidCallback onBackPressed();
+}
+
+abstract class FloatingActionBarBehavior {
+  void onFABPressed();
+}
+
+class MaterialPalette {
+  Color primaryColor;
+  Color secondaryColor;
+  Color accentColor;
+  Color textColor;
+
+  MaterialPalette(
+      this.primaryColor, this.secondaryColor, this.accentColor, this.textColor);
 }

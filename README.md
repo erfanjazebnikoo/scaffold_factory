@@ -1,6 +1,6 @@
-# scaffold_factory
+# Scaffold Factory
 
-A new flutter plugin project.
+A flutter library to build and customize a screen with a simple and flexible configuration.
 
 ## Getting Started
 
