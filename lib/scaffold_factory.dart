@@ -15,6 +15,14 @@ class ScaffoldFactory {
   ScaffoldVisibility appBarVisibility;
   AppBar appBar;
 
+  /// Floating Action Button
+  ScaffoldVisibility floatingActionButtonVisibility =
+      ScaffoldVisibility.invisible;
+  Widget floatingActionButtonBody;
+  FloatingActionButtonLocation fabLocation =
+      FloatingActionButtonLocation.endFloat;
+  bool showNotch = true;
+
   factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey,
           MaterialPalette materialPalette) =>
       ScaffoldFactory._internal(scaffoldKey, materialPalette);
@@ -24,10 +32,17 @@ class ScaffoldFactory {
   void init({
     BackgroundType backgroundType,
     ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
+    ScaffoldVisibility floatingActionButtonVisibility =
+        ScaffoldVisibility.invisible,
+    Widget floatingActionButtonBody,
+    FloatingActionButtonLocation fabLocation,
     Widget appBar,
   }) {
     this.backgroundType = backgroundType;
     this.appBarVisibility = appBarVisibility;
+    this.floatingActionButtonVisibility = floatingActionButtonVisibility;
+    this.floatingActionButtonBody = floatingActionButtonBody;
+    this.fabLocation = fabLocation;
     this.appBar = appBar;
   }
 
@@ -38,9 +53,11 @@ class ScaffoldFactory {
       key: scaffoldKey,
       primary: primary,
       appBar: isVisible(appBarVisibility) ? this.appBar : null,
-//      floatingActionButtonLocation: floatingActionButtonLocation,
+      floatingActionButtonLocation: fabLocation,
 //      bottomNavigationBar: _buildBottomNavigationBar(),
-//      floatingActionButton: _buildFloatingActionButton(),
+      floatingActionButton: isVisible(floatingActionButtonVisibility)
+          ? this.floatingActionButtonBody
+          : null,
       body: Container(
         decoration: BoxDecoration(
           color: backgroundType == BackgroundType.solidColor
@@ -145,37 +162,22 @@ class ScaffoldFactory {
 //        : null;
 //  }
 
-//  Widget _buildFloatingActionButton() {
-//    return isVisible(floatingActionButtonVisibility)
-//        ? !enableMultiActionFab
-//        ? FloatingActionButton(
-//      heroTag: fabHeroTag,
-//      onPressed: () => this.floatingActionBarBehavior.onFABPressed(),
-//      tooltip: this.fabTooltip,
-//      child: fabBody ??
-//          Image.asset(
-//            'asset/image/logo.png',
-//            width: 25.0,
-//            fit: BoxFit.fill,
-//          ),
-//      backgroundColor: this.colorPalette.accentColor,
-//    )
-//        : AnimatedFabDialer(
-//        parentButtonBackground: this.colorPalette.accentColor,
-//        parentHeroTag: fabHeroTag,
-//        orientation: AnimatedFabOrientation.vertical,
-//        parentButton: Icon(
-//          childButtons.length > 2 ? Icons.attach_file : Icons.menu,
-//          color: Colors.white,
-//          size: 36.0,
-//        ),
-//        hasBackground: true,
-//        backgroundColor: Colors.black.withOpacity(0.6),
-////                  onMainButtonPressed: () =>
-////                      this.floatingActionBarBehavior.onFABPressed(),
-//        childButtons: childButtons)
-//        : null;
-//  }
+  Widget buildFloatingActionButton(
+      {@required Widget fabBody,
+      String fabTooltip = "",
+      String fabHeroTag = "",
+      Color backgroundColor}) {
+    return isVisible(floatingActionButtonVisibility)
+        ? FloatingActionButton(
+            heroTag: fabHeroTag,
+            onPressed: () =>
+                this.buttonsBehavior.onFloatingActionButtonPressed(),
+            tooltip: fabTooltip,
+            child: fabBody,
+            backgroundColor: backgroundColor ?? this.colorPalette.accentColor,
+          )
+        : null;
+  }
 
 //  changeFrameColor() {
 //    if (Platform.isAndroid) {

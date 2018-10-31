@@ -43,6 +43,14 @@ class _MyAppState extends State<MyApp>
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
       appBarVisibility: ScaffoldVisibility.visible,
+      floatingActionButtonVisibility: ScaffoldVisibility.visible,
+      floatingActionButtonBody: _scaffoldFactory.buildFloatingActionButton(
+        fabBody: Icon(
+          Icons.settings,
+          size: 25.0,
+          color: Colors.white,
+        ),
+      ),
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: ScaffoldVisibility.visible,
         leadingVisibility: ScaffoldVisibility.invisible,
