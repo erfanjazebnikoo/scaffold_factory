@@ -2,29 +2,42 @@ import 'package:flutter/material.dart';
 
 class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
+  ScaffoldFactoryButtonsBehavior buttonsBehavior;
   bool primary = true;
 
   /// Color, Palette and Theme
   MaterialPalette colorPalette;
   List<Color> gradientBackgroundColors;
-  BackgroundType backgroundType = BackgroundType.solidColor;
+  BackgroundType backgroundType = BackgroundType.normal;
   TextTheme textTheme;
 
+  /// Appbar
+  ScaffoldVisibility appBarVisibility;
+  AppBar appBar;
+
   factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey,
-      MaterialPalette materialPalette, BackgroundType backgroundType) {
-    return ScaffoldFactory._internal(
-        scaffoldKey, materialPalette, backgroundType);
+          MaterialPalette materialPalette) =>
+      ScaffoldFactory._internal(scaffoldKey, materialPalette);
+
+  ScaffoldFactory._internal(this.scaffoldKey, this.colorPalette);
+
+  void init({
+    BackgroundType backgroundType,
+    ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
+    Widget appBar,
+  }) {
+    this.backgroundType = backgroundType;
+    this.appBarVisibility = appBarVisibility;
+    this.appBar = appBar;
   }
 
-  ScaffoldFactory._internal(
-      this.scaffoldKey, this.colorPalette, this.backgroundType);
-
-  Widget build(Widget bodyWidget) {
+  Widget build(BuildContext context, Widget bodyWidget) {
+    this.textTheme = Theme.of(context).textTheme;
 //    checkNotificationStatus();
     return Scaffold(
       key: scaffoldKey,
       primary: primary,
-//      appBar: isVisible(appbarVisibility) ? _buildAppBar() : null,
+      appBar: isVisible(appBarVisibility) ? this.appBar : null,
 //      floatingActionButtonLocation: floatingActionButtonLocation,
 //      bottomNavigationBar: _buildBottomNavigationBar(),
 //      floatingActionButton: _buildFloatingActionButton(),
@@ -49,6 +62,51 @@ class ScaffoldFactory {
     );
   }
 
+  /// Simple implementation of AppBar which user can use it with
+  /// easy configuration
+  AppBar buildAppBar({
+    @required ScaffoldVisibility titleVisibility,
+    @required ScaffoldVisibility leadingVisibility,
+    Widget titleWidget,
+    Widget leadingWidget,
+    Color backgroundColor,
+  }) {
+    return AppBar(
+      backgroundColor: backgroundColor,
+      centerTitle: true,
+      automaticallyImplyLeading: false,
+      leading:
+          ScaffoldFactory.isVisible(leadingVisibility) ? leadingWidget : null,
+      title: ScaffoldFactory.isVisible(titleVisibility) ? titleWidget : null,
+
+//      flexibleSpace: !isVisible(appBarTitleVisibility)
+//          ? Column(
+//              mainAxisAlignment: MainAxisAlignment.end,
+//              children: [
+//                isVisible(appBarTabBarVisibility)
+//                    ? TabBar(
+//                        isScrollable: this.isTabScrollable,
+//                        tabs: this.tabList,
+//                        controller: this.tabController,
+//                        indicatorWeight: 4.0,
+//                      )
+//                    : null,
+//              ],
+//            )
+//          : null,
+//      bottom: isVisible(appBarTitleVisibility)
+//          ? isVisible(appBarTabBarVisibility)
+//              ? TabBar(
+//                  isScrollable: this.isTabScrollable,
+//                  tabs: this.tabList,
+//                  controller: this.tabController,
+//                  indicatorWeight: 4.0,
+//                )
+//              : null
+//          : null,
+    );
+  }
+
 //  NestedScrollView _buildNestedScrollView(Widget bodyWidget) {
 //    return NestedScrollView(
 ////                controller: scrollController ??
@@ -69,46 +127,6 @@ class ScaffoldFactory {
 //        ];
 //      },
 //      body: bodyWidget ?? Center(),
-//    );
-//  }
-
-//  AppBar _buildAppBar() {
-//    return AppBar(
-//      backgroundColor: this.colorPalette.primaryColor,
-//      centerTitle: true,
-//      automaticallyImplyLeading: false,
-//      leading: isVisible(appBarTitleVisibility)
-//          ? IconButton(
-//        icon: Icon(Icons.arrow_back, color: backButtonColor),
-//        onPressed: () => Navigator.of(scaffoldKey.currentContext).pop(),
-//      )
-//          : null,
-//      title: isVisible(appBarTitleVisibility) ? this.appBarTitle : null,
-//      flexibleSpace: !isVisible(appBarTitleVisibility)
-//          ? Column(
-//        mainAxisAlignment: MainAxisAlignment.end,
-//        children: [
-//          isVisible(appBarTabBarVisibility)
-//              ? TabBar(
-//            isScrollable: this.isTabScrollable,
-//            tabs: this.tabList,
-//            controller: this.tabController,
-//            indicatorWeight: 4.0,
-//          )
-//              : null,
-//        ],
-//      )
-//          : null,
-//      bottom: isVisible(appBarTitleVisibility)
-//          ? isVisible(appBarTabBarVisibility)
-//          ? TabBar(
-//        isScrollable: this.isTabScrollable,
-//        tabs: this.tabList,
-//        controller: this.tabController,
-//        indicatorWeight: 4.0,
-//      )
-//          : null
-//          : null,
 //    );
 //  }
 
@@ -182,7 +200,7 @@ class ScaffoldFactory {
 //    }
 //  }
 
-  bool isVisible(ScaffoldVisibility visibility) {
+  static bool isVisible(ScaffoldVisibility visibility) {
     if (visibility == ScaffoldVisibility.visible)
       return true;
     else if (visibility == ScaffoldVisibility.invisible)
@@ -208,7 +226,7 @@ class ScaffoldFactory {
 //  }
 }
 
-abstract class ButtonsBehavior {
+abstract class ScaffoldFactoryButtonsBehavior {
   void onBackButtonPressed();
 
   void onFloatingActionButtonPressed();
