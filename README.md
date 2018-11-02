@@ -1,6 +1,6 @@
 # Scaffold Factory
 
-A flutter library to build and customize a screen with a simple and flexible configuration.
+A flutter plugin to build and customize a screen with a simple and flexible configuration.
 
 ## Getting Started
 
