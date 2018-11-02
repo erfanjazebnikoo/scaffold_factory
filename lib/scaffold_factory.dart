@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
@@ -18,7 +19,7 @@ class ScaffoldFactory {
   /// Floating Action Button
   ScaffoldVisibility floatingActionButtonVisibility =
       ScaffoldVisibility.invisible;
-  Widget floatingActionButtonBody;
+  Widget floatingActionButton;
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
   bool showNotch = true;
@@ -34,20 +35,19 @@ class ScaffoldFactory {
     ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
     ScaffoldVisibility floatingActionButtonVisibility =
         ScaffoldVisibility.invisible,
-    Widget floatingActionButtonBody,
-    FloatingActionButtonLocation fabLocation,
+    Widget floatingActionButton,
+    FloatingActionButtonLocation floatingActionButtonLocation,
     Widget appBar,
   }) {
     this.backgroundType = backgroundType;
     this.appBarVisibility = appBarVisibility;
     this.floatingActionButtonVisibility = floatingActionButtonVisibility;
-    this.floatingActionButtonBody = floatingActionButtonBody;
-    this.fabLocation = fabLocation;
+    this.floatingActionButton = floatingActionButton;
+    this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
   }
 
   Widget build(BuildContext context, Widget bodyWidget) {
-    this.textTheme = Theme.of(context).textTheme;
 //    checkNotificationStatus();
     return Scaffold(
       key: scaffoldKey,
@@ -56,7 +56,7 @@ class ScaffoldFactory {
       floatingActionButtonLocation: fabLocation,
 //      bottomNavigationBar: _buildBottomNavigationBar(),
       floatingActionButton: isVisible(floatingActionButtonVisibility)
-          ? this.floatingActionButtonBody
+          ? this.floatingActionButton
           : null,
       body: Container(
         decoration: BoxDecoration(
@@ -90,7 +90,6 @@ class ScaffoldFactory {
   }) {
     return AppBar(
       backgroundColor: backgroundColor,
-      centerTitle: true,
       automaticallyImplyLeading: false,
       leading:
           ScaffoldFactory.isVisible(leadingVisibility) ? leadingWidget : null,
@@ -162,21 +161,18 @@ class ScaffoldFactory {
 //        : null;
 //  }
 
-  Widget buildFloatingActionButton(
+  FloatingActionButton buildFloatingActionButton(
       {@required Widget fabBody,
-      String fabTooltip = "",
-      String fabHeroTag = "",
+      String tooltip = "",
+      String heroTag = "",
       Color backgroundColor}) {
-    return isVisible(floatingActionButtonVisibility)
-        ? FloatingActionButton(
-            heroTag: fabHeroTag,
-            onPressed: () =>
-                this.buttonsBehavior.onFloatingActionButtonPressed(),
-            tooltip: fabTooltip,
-            child: fabBody,
-            backgroundColor: backgroundColor ?? this.colorPalette.accentColor,
-          )
-        : null;
+    return FloatingActionButton(
+      heroTag: heroTag,
+      onPressed: () => this.buttonsBehavior.onFloatingActionButtonPressed(),
+      tooltip: tooltip,
+      child: fabBody,
+      backgroundColor: backgroundColor ?? this.colorPalette.accentColor,
+    );
   }
 
 //  changeFrameColor() {
@@ -226,6 +222,14 @@ class ScaffoldFactory {
 //      }
 //    });
 //  }
+
+  void launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
 
 abstract class ScaffoldFactoryButtonsBehavior {

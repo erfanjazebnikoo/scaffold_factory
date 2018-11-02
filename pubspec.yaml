@@ -10,6 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  url_launcher: ^4.0.1
 
 # The following section is specific to Flutter.
 flutter:
