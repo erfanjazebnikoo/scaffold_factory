@@ -24,7 +24,7 @@ class _SampleCatalogState extends State<SampleCatalog>
   @override
   Widget build(BuildContext context) {
     _scaffoldFactory.textTheme = Theme.of(context).textTheme;
-    return _scaffoldFactory.build(context, _buildBody(context));
+    return _scaffoldFactory.build(_buildBody(context));
   }
 
   void _initScaffoldFactory() {
@@ -139,7 +139,7 @@ final catalogItems = [
   CatalogOption(
     "Bottom Navigation Bar",
     "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWG5nei0wWXpoczA/components_bottom_navigation.png",
-    "",
+    "/bottomNavigationBar",
   ),
   CatalogOption(
     "Tab Bar",

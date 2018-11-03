@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory_example/sample/sample_app_bar.dart';
+import 'package:scaffold_factory_example/sample/sample_bottom_navigation_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_catalog.dart';
 import 'package:scaffold_factory_example/sample/sample_floating_action_button.dart';
 
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
 final routes = {
   '/': (BuildContext context) => new SampleCatalog(),
   '/appBar': (BuildContext context) => new SampleAppBar(),
-  '/floatingActionButton': (BuildContext context) => new SampleFloatingActionButton(),
-//  '/bottomNavigationBar': (BuildContext context) => new SampleBottomNavigationBar(),
+  '/floatingActionButton': (BuildContext context) =>
+      new SampleFloatingActionButton(),
+  '/bottomNavigationBar': (BuildContext context) =>
+      new SampleBottomNavigationBar(),
 };

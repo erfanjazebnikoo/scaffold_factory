@@ -32,7 +32,7 @@ class _SampleAppBarState extends State<SampleAppBar>
     _appBarSwitch =
         _scaffoldFactory.appBarVisibility == ScaffoldVisibility.visible;
 
-    return _scaffoldFactory.build(context, _buildBody(context));
+    return _scaffoldFactory.build(_buildBody(context));
   }
 
   void _initScaffoldFactory() {
@@ -87,8 +87,9 @@ class _SampleAppBarState extends State<SampleAppBar>
           ),
           //////////////////////////////////////////// Center title visibility
           SwitchListTile(
-            value:
-                _appBarSwitch && _appBarTitleSwitch ? _centerTitleSwitch : false,
+            value: _appBarSwitch && _appBarTitleSwitch
+                ? _centerTitleSwitch
+                : false,
             onChanged: _appBarSwitch && _appBarTitleSwitch
                 ? (bool value) {
                     setState(() {

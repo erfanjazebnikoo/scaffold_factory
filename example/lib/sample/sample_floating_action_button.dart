@@ -29,7 +29,7 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
   Widget build(BuildContext context) {
     _scaffoldFactory.textTheme = Theme.of(context).textTheme;
 
-    return _scaffoldFactory.build(context, _buildBody(context));
+    return _scaffoldFactory.build(_buildBody(context));
   }
 
   void _initScaffoldFactory() {
@@ -65,7 +65,7 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
     _fabSwitch = _scaffoldFactory.floatingActionButtonVisibility ==
         ScaffoldVisibility.visible;
     if (_scaffoldFactory.fabLocation ==
-        FloatingActionButtonLocation.centerDocked ||
+            FloatingActionButtonLocation.centerDocked ||
         _scaffoldFactory.fabLocation ==
             FloatingActionButtonLocation.centerFloat) {
       _fabCenterSwitch = true;

@@ -24,6 +24,11 @@ class ScaffoldFactory {
       FloatingActionButtonLocation.endFloat;
   bool showNotch = true;
 
+  /// Bottom Navigation Bar
+  ScaffoldVisibility bottomNavigationBarVisibility =
+      ScaffoldVisibility.invisible;
+  Widget bottomNavigationBar;
+
   factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey,
           MaterialPalette materialPalette) =>
       ScaffoldFactory._internal(scaffoldKey, materialPalette);
@@ -35,26 +40,32 @@ class ScaffoldFactory {
     ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
     ScaffoldVisibility floatingActionButtonVisibility =
         ScaffoldVisibility.invisible,
+    ScaffoldVisibility bottomNavigationBarVisibility =
+        ScaffoldVisibility.invisible,
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
     Widget appBar,
+    Widget bottomNavigationBar,
   }) {
     this.backgroundType = backgroundType;
     this.appBarVisibility = appBarVisibility;
     this.floatingActionButtonVisibility = floatingActionButtonVisibility;
+    this.bottomNavigationBarVisibility = bottomNavigationBarVisibility;
     this.floatingActionButton = floatingActionButton;
     this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
+    this.bottomNavigationBar = bottomNavigationBar;
   }
 
-  Widget build(BuildContext context, Widget bodyWidget) {
-//    checkNotificationStatus();
+  Widget build(Widget bodyWidget) {
     return Scaffold(
       key: scaffoldKey,
       primary: primary,
       appBar: isVisible(appBarVisibility) ? this.appBar : null,
       floatingActionButtonLocation: fabLocation,
-//      bottomNavigationBar: _buildBottomNavigationBar(),
+      bottomNavigationBar: isVisible(bottomNavigationBarVisibility)
+          ? this.bottomNavigationBar
+          : null,
       floatingActionButton: isVisible(floatingActionButtonVisibility)
           ? this.floatingActionButton
           : null,
@@ -147,9 +158,21 @@ class ScaffoldFactory {
 //    );
 //  }
 
-//  Widget _buildBottomNavigationBar() {
-//    return isVisible(bottomNavigationBarVisibility)
-//        ? CustomBottomAppBar(
+  Widget buildBottomNavigationBar({
+    @required List<BottomNavigationBarItem> items,
+    @required ValueChanged<int> onTap,
+    int currentIndex = 0,
+  }) {
+    return BottomNavigationBar(
+      onTap: onTap,
+      currentIndex: currentIndex,
+      items: items,
+    );
+  }
+
+  Widget buildBottomAppBar() {
+    return null;
+    //    return CustomBottomAppBar(
 //      textTheme: textTheme,
 //      color: this.colorPalette.primaryColor,
 //      fabLocation: FloatingActionButtonLocation.centerDocked,
@@ -158,9 +181,8 @@ class ScaffoldFactory {
 //      navigationOption: navigationOption,
 //      scaffoldFactory: this,
 //      activeNotification: notificationActive,
-//    )
-//        : null;
-//  }
+//    );
+  }
 
   FloatingActionButton buildFloatingActionButton(
       {@required Widget fabBody,
