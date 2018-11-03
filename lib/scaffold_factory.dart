@@ -9,7 +9,7 @@ class ScaffoldFactory {
   /// Color, Palette and Theme
   MaterialPalette colorPalette;
   List<Color> gradientBackgroundColors;
-  BackgroundType backgroundType = BackgroundType.normal;
+  BackgroundType backgroundType;
   TextTheme textTheme;
 
   /// Appbar
@@ -31,7 +31,7 @@ class ScaffoldFactory {
   ScaffoldFactory._internal(this.scaffoldKey, this.colorPalette);
 
   void init({
-    BackgroundType backgroundType,
+    BackgroundType backgroundType = BackgroundType.normal,
     ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
     ScaffoldVisibility floatingActionButtonVisibility =
         ScaffoldVisibility.invisible,
@@ -87,6 +87,7 @@ class ScaffoldFactory {
     Widget titleWidget,
     Widget leadingWidget,
     Color backgroundColor,
+    bool centerTitle = false,
   }) {
     return AppBar(
       backgroundColor: backgroundColor,
@@ -94,7 +95,7 @@ class ScaffoldFactory {
       leading:
           ScaffoldFactory.isVisible(leadingVisibility) ? leadingWidget : null,
       title: ScaffoldFactory.isVisible(titleVisibility) ? titleWidget : null,
-
+      centerTitle: centerTitle,
 //      flexibleSpace: !isVisible(appBarTitleVisibility)
 //          ? Column(
 //              mainAxisAlignment: MainAxisAlignment.end,
@@ -165,12 +166,14 @@ class ScaffoldFactory {
       {@required Widget fabBody,
       String tooltip = "",
       String heroTag = "",
-      Color backgroundColor}) {
+      Color backgroundColor,
+      bool mini = false}) {
     return FloatingActionButton(
       heroTag: heroTag,
       onPressed: () => this.buttonsBehavior.onFloatingActionButtonPressed(),
       tooltip: tooltip,
       child: fabBody,
+      mini: mini,
       backgroundColor: backgroundColor ?? this.colorPalette.accentColor,
     );
   }

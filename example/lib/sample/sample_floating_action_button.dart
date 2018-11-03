@@ -15,18 +15,20 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
     primaryColor: Colors.orange,
     accentColor: Colors.deepOrange,
   );
-  static bool floatingActionButtonSwitch;
+  static bool _fabSwitch;
+  static bool _fabCenterSwitch;
+  static bool _fabFloatingSwitch;
 
   @override
   void initState() {
     super.initState();
-    floatingActionButtonSwitch = false;
     _initScaffoldFactory();
   }
 
   @override
   Widget build(BuildContext context) {
     _scaffoldFactory.textTheme = Theme.of(context).textTheme;
+
     return _scaffoldFactory.build(context, _buildBody(context));
   }
 
@@ -36,22 +38,22 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
-      appBarVisibility: ScaffoldVisibility.invisible,
+      appBarVisibility: ScaffoldVisibility.visible,
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: ScaffoldVisibility.visible,
-        leadingVisibility: ScaffoldVisibility.invisible,
-        titleWidget: const Text('Scaffold Factory example'),
+        leadingVisibility: ScaffoldVisibility.visible,
+        titleWidget: const Text('FAB Configuration'),
         leadingWidget: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => this.onBackButtonPressed(),
         ),
         backgroundColor: _sampleColorPalette.primaryColor,
       ),
-      floatingActionButtonVisibility: ScaffoldVisibility.invisible,
+      floatingActionButtonVisibility: ScaffoldVisibility.visible,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: _scaffoldFactory.buildFloatingActionButton(
         fabBody: Icon(
-          Icons.link,
+          Icons.add,
           color: Colors.white,
         ),
         tooltip: "Scaffold Factory Repository",
@@ -60,30 +62,81 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
   }
 
   Widget _buildBody(BuildContext context) {
+    _fabSwitch = _scaffoldFactory.floatingActionButtonVisibility ==
+        ScaffoldVisibility.visible;
+    if (_scaffoldFactory.fabLocation ==
+        FloatingActionButtonLocation.centerDocked ||
+        _scaffoldFactory.fabLocation ==
+            FloatingActionButtonLocation.centerFloat) {
+      _fabCenterSwitch = true;
+    } else {
+      _fabCenterSwitch = false;
+    }
+    if (_scaffoldFactory.fabLocation == FloatingActionButtonLocation.endFloat ||
+        _scaffoldFactory.fabLocation ==
+            FloatingActionButtonLocation.centerFloat) {
+      _fabFloatingSwitch = true;
+    } else {
+      _fabFloatingSwitch = false;
+    }
+
     return SingleChildScrollView(
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: <Widget>[
-          ListTile(
-              title: Text(
-            'Floating Action Button Configuration',
-            style: _scaffoldFactory.textTheme.subhead.copyWith(
-              color: _scaffoldFactory.colorPalette.accentColor,
-            ),
-          )),
           SwitchListTile(
-            value: floatingActionButtonSwitch,
+            value: _fabSwitch,
             onChanged: (bool value) {
               setState(() {
                 _scaffoldFactory.floatingActionButtonVisibility = value
                     ? ScaffoldVisibility.visible
                     : ScaffoldVisibility.invisible;
-                floatingActionButtonSwitch = value;
+                _fabSwitch = value;
               });
             },
             activeColor: _scaffoldFactory.colorPalette.accentColor,
             title: Text('Floating Action Button'),
             subtitle: Text('Change floating action button visibility'),
+          ),
+          SwitchListTile(
+            value: _fabSwitch ? _fabCenterSwitch : false,
+            onChanged: _fabSwitch
+                ? (bool value) {
+                    setState(() {
+                      _scaffoldFactory.fabLocation = value
+                          ? _fabFloatingSwitch
+                              ? FloatingActionButtonLocation.centerFloat
+                              : FloatingActionButtonLocation.centerDocked
+                          : _fabFloatingSwitch
+                              ? FloatingActionButtonLocation.endFloat
+                              : FloatingActionButtonLocation.endDocked;
+                      _fabCenterSwitch = value;
+                    });
+                  }
+                : null,
+            activeColor: _scaffoldFactory.colorPalette.accentColor,
+            title: Text('Center'),
+            subtitle: Text('Switch between center and end location'),
+          ),
+          SwitchListTile(
+            value: _fabSwitch ? _fabFloatingSwitch : false,
+            onChanged: _fabSwitch
+                ? (bool value) {
+                    setState(() {
+                      _scaffoldFactory.fabLocation = value
+                          ? _fabCenterSwitch
+                              ? FloatingActionButtonLocation.centerFloat
+                              : FloatingActionButtonLocation.endFloat
+                          : _fabCenterSwitch
+                              ? FloatingActionButtonLocation.centerDocked
+                              : FloatingActionButtonLocation.endDocked;
+                      _fabFloatingSwitch = value;
+                    });
+                  }
+                : null,
+            activeColor: _scaffoldFactory.colorPalette.accentColor,
+            title: Text('Floating'),
+            subtitle: Text('Switch between floating and docked'),
           ),
         ],
       ),
