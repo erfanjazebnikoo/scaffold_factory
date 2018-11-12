@@ -15,7 +15,6 @@ class _SampleAppBarState extends State<SampleAppBar>
     accentColor: Colors.deepOrangeAccent,
   );
 
-  static bool _appBarSwitch;
   static bool _appBarTitleSwitch;
   static bool _appBarLeadingSwitch;
   static bool _centerTitleSwitch;
@@ -29,8 +28,6 @@ class _SampleAppBarState extends State<SampleAppBar>
   @override
   Widget build(BuildContext context) {
     _scaffoldFactory.textTheme = Theme.of(context).textTheme;
-    _appBarSwitch =
-        _scaffoldFactory.appBarVisibility == ScaffoldVisibility.visible;
 
     return _scaffoldFactory.build(_buildBody(context));
   }
@@ -41,8 +38,8 @@ class _SampleAppBarState extends State<SampleAppBar>
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
-      appBarVisibility: ScaffoldVisibility.visible,
-      floatingActionButtonVisibility: ScaffoldVisibility.invisible,
+      appBarVisibility: true,
+      floatingActionButtonVisibility: false,
       appBar: _buildAppBar(),
     );
   }
@@ -54,13 +51,10 @@ class _SampleAppBarState extends State<SampleAppBar>
         children: <Widget>[
           ////////////////////////////////////////////////// App Bar visibility
           SwitchListTile(
-            value: _appBarSwitch,
+            value: _scaffoldFactory.appBarVisibility,
             onChanged: (bool value) {
               setState(() {
-                _scaffoldFactory.appBarVisibility = value
-                    ? ScaffoldVisibility.visible
-                    : ScaffoldVisibility.invisible;
-                _appBarSwitch = value;
+                _scaffoldFactory.appBarVisibility = value;
               });
             },
             activeColor: _scaffoldFactory.colorPalette.accentColor,
@@ -69,14 +63,13 @@ class _SampleAppBarState extends State<SampleAppBar>
           ),
           //////////////////////////////////////////// App Bar title visibility
           SwitchListTile(
-            value: _appBarSwitch ? _appBarTitleSwitch : false,
-            onChanged: _appBarSwitch
+            value:
+                _scaffoldFactory.appBarVisibility ? _appBarTitleSwitch : false,
+            onChanged: _scaffoldFactory.appBarVisibility
                 ? (bool value) {
                     setState(() {
-                      _scaffoldFactory.appBar = _buildAppBar(
-                          titleVisibility: value
-                              ? ScaffoldVisibility.visible
-                              : ScaffoldVisibility.invisible);
+                      _scaffoldFactory.appBar =
+                          _buildAppBar(titleVisibility: value);
                       _appBarTitleSwitch = value;
                     });
                   }
@@ -87,10 +80,10 @@ class _SampleAppBarState extends State<SampleAppBar>
           ),
           //////////////////////////////////////////// Center title visibility
           SwitchListTile(
-            value: _appBarSwitch && _appBarTitleSwitch
+            value: _scaffoldFactory.appBarVisibility && _appBarTitleSwitch
                 ? _centerTitleSwitch
                 : false,
-            onChanged: _appBarSwitch && _appBarTitleSwitch
+            onChanged: _scaffoldFactory.appBarVisibility && _appBarTitleSwitch
                 ? (bool value) {
                     setState(() {
                       _scaffoldFactory.appBar = _buildAppBar(
@@ -106,14 +99,14 @@ class _SampleAppBarState extends State<SampleAppBar>
           ),
           //////////////////////////////////////////// App Bar title visibility
           SwitchListTile(
-            value: _appBarSwitch ? _appBarLeadingSwitch : false,
-            onChanged: _appBarSwitch
+            value: _scaffoldFactory.appBarVisibility
+                ? _appBarLeadingSwitch
+                : false,
+            onChanged: _scaffoldFactory.appBarVisibility
                 ? (bool value) {
                     setState(() {
-                      _scaffoldFactory.appBar = _buildAppBar(
-                          leadingVisibility: value
-                              ? ScaffoldVisibility.visible
-                              : ScaffoldVisibility.invisible);
+                      _scaffoldFactory.appBar =
+                          _buildAppBar(leadingVisibility: value);
                       _appBarLeadingSwitch = value;
                     });
                   }
@@ -128,12 +121,12 @@ class _SampleAppBarState extends State<SampleAppBar>
   }
 
   AppBar _buildAppBar(
-      {ScaffoldVisibility titleVisibility = ScaffoldVisibility.visible,
-      ScaffoldVisibility leadingVisibility = ScaffoldVisibility.visible,
+      {bool titleVisibility = true,
+      bool leadingVisibility = true,
       bool centerTitle = false}) {
-    _appBarTitleSwitch = titleVisibility == ScaffoldVisibility.visible;
+    _appBarTitleSwitch = titleVisibility;
     _centerTitleSwitch = centerTitle;
-    _appBarLeadingSwitch = leadingVisibility == ScaffoldVisibility.visible;
+    _appBarLeadingSwitch = leadingVisibility;
 
     return _scaffoldFactory.buildAppBar(
       titleVisibility: titleVisibility,

@@ -33,14 +33,14 @@ class _SampleCatalogState extends State<SampleCatalog>
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
-      appBarVisibility: ScaffoldVisibility.visible,
+      appBarVisibility: true,
       appBar: _scaffoldFactory.buildAppBar(
-        titleVisibility: ScaffoldVisibility.visible,
-        leadingVisibility: ScaffoldVisibility.invisible,
+        titleVisibility: true,
+        leadingVisibility: false,
         titleWidget: const Text('Scaffold Factory examples catalog'),
         backgroundColor: _sampleColorPalette.primaryColor,
       ),
-      floatingActionButtonVisibility: ScaffoldVisibility.visible,
+      floatingActionButtonVisibility: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: _scaffoldFactory.buildFloatingActionButton(
         fabBody: Icon(

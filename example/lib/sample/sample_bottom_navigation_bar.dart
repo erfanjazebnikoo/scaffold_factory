@@ -20,9 +20,9 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
   int _currentIndex = 0;
 
   final List<Widget> _bodyChildren = [
-    SamplePlaceholder(Colors.lightBlue),
-    SamplePlaceholder(Colors.deepOrange),
-    SamplePlaceholder(Colors.green)
+    SamplePlaceholder(Colors.lightBlue, "Home Screen"),
+    SamplePlaceholder(Colors.deepOrange, "Messages Screen"),
+    SamplePlaceholder(Colors.green, "Profile Screen")
   ];
 
   @override
@@ -46,13 +46,13 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
-      appBarVisibility: ScaffoldVisibility.visible,
-      floatingActionButtonVisibility: ScaffoldVisibility.invisible,
-      bottomNavigationBarVisibility: ScaffoldVisibility.visible,
+      appBarVisibility: true,
+      floatingActionButtonVisibility: false,
+      bottomNavigationBarVisibility: true,
 //      bottomNavigationBar: _buildBottomNavigationBar(),
       appBar: _scaffoldFactory.buildAppBar(
-        titleVisibility: ScaffoldVisibility.visible,
-        leadingVisibility: ScaffoldVisibility.visible,
+        titleVisibility: true,
+        leadingVisibility: true,
         titleWidget: const Text('Navigation Bar Configuration'),
         leadingWidget: IconButton(
           icon: Icon(Icons.arrow_back),

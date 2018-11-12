@@ -1,3 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.erfanjazebnikoo.scaffoldfactory">
-</manifest>
+<manifest package="com.erfanjazebnikoo.scaffoldfactory"/>

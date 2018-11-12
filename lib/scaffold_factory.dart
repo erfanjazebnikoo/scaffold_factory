@@ -13,20 +13,18 @@ class ScaffoldFactory {
   TextTheme textTheme;
 
   /// Appbar
-  ScaffoldVisibility appBarVisibility;
+  bool appBarVisibility;
   AppBar appBar;
 
   /// Floating Action Button
-  ScaffoldVisibility floatingActionButtonVisibility =
-      ScaffoldVisibility.invisible;
+  bool floatingActionButtonVisibility = false;
   Widget floatingActionButton;
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
   bool showNotch = true;
 
   /// Bottom Navigation Bar
-  ScaffoldVisibility bottomNavigationBarVisibility =
-      ScaffoldVisibility.invisible;
+  bool bottomNavigationBarVisibility = false;
   Widget bottomNavigationBar;
 
   factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey,
@@ -37,11 +35,9 @@ class ScaffoldFactory {
 
   void init({
     BackgroundType backgroundType = BackgroundType.normal,
-    ScaffoldVisibility appBarVisibility = ScaffoldVisibility.invisible,
-    ScaffoldVisibility floatingActionButtonVisibility =
-        ScaffoldVisibility.invisible,
-    ScaffoldVisibility bottomNavigationBarVisibility =
-        ScaffoldVisibility.invisible,
+    bool appBarVisibility = false,
+    bool floatingActionButtonVisibility = false,
+    bool bottomNavigationBarVisibility = false,
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
     Widget appBar,
@@ -61,12 +57,11 @@ class ScaffoldFactory {
     return Scaffold(
       key: scaffoldKey,
       primary: primary,
-      appBar: isVisible(appBarVisibility) ? this.appBar : null,
+      appBar: this.appBarVisibility ? this.appBar : null,
       floatingActionButtonLocation: fabLocation,
-      bottomNavigationBar: isVisible(bottomNavigationBarVisibility)
-          ? this.bottomNavigationBar
-          : null,
-      floatingActionButton: isVisible(floatingActionButtonVisibility)
+      bottomNavigationBar:
+          this.bottomNavigationBarVisibility ? this.bottomNavigationBar : null,
+      floatingActionButton: this.floatingActionButtonVisibility
           ? this.floatingActionButton
           : null,
       body: Container(
@@ -90,11 +85,11 @@ class ScaffoldFactory {
     );
   }
 
-  /// Simple implementation of AppBar which user can use it with
+  /// Simple implementation of App Bar which user can use it with
   /// easy configuration
   AppBar buildAppBar({
-    @required ScaffoldVisibility titleVisibility,
-    @required ScaffoldVisibility leadingVisibility,
+    @required bool titleVisibility,
+    @required bool leadingVisibility,
     Widget titleWidget,
     Widget leadingWidget,
     Color backgroundColor,
@@ -103,9 +98,8 @@ class ScaffoldFactory {
     return AppBar(
       backgroundColor: backgroundColor,
       automaticallyImplyLeading: false,
-      leading:
-          ScaffoldFactory.isVisible(leadingVisibility) ? leadingWidget : null,
-      title: ScaffoldFactory.isVisible(titleVisibility) ? titleWidget : null,
+      leading: leadingVisibility ? leadingWidget : null,
+      title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
 //      flexibleSpace: !isVisible(appBarTitleVisibility)
 //          ? Column(
@@ -223,15 +217,6 @@ class ScaffoldFactory {
 //    }
 //  }
 
-  static bool isVisible(ScaffoldVisibility visibility) {
-    if (visibility == ScaffoldVisibility.visible)
-      return true;
-    else if (visibility == ScaffoldVisibility.invisible)
-      return false;
-    else
-      return null;
-  }
-
   void dispose() {
 //    _notificationSubscription.cancel();
   }
@@ -263,11 +248,6 @@ abstract class ScaffoldFactoryButtonsBehavior {
   void onFloatingActionButtonPressed();
 }
 
-enum ScaffoldVisibility {
-  visible,
-  invisible,
-}
-
 enum BackgroundType {
   normal,
   solidColor,
@@ -287,8 +267,8 @@ class MaterialPalette {
 
   MaterialPalette({
     @required this.primaryColor,
-    this.secondaryColor,
     @required this.accentColor,
+    this.secondaryColor,
     this.textColor,
     this.darkPrimaryColor,
     this.lightPrimaryColor,
