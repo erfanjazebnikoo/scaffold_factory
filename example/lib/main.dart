@@ -3,6 +3,7 @@ import 'package:scaffold_factory_example/sample/sample_app_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_bottom_navigation_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_catalog.dart';
 import 'package:scaffold_factory_example/sample/sample_floating_action_button.dart';
+import 'package:scaffold_factory_example/sample/sample_nested_app_bar.dart';
 
 void main() => runApp(new MyApp());
 
@@ -25,4 +26,5 @@ final routes = {
       new SampleFloatingActionButton(),
   '/bottomNavigationBar': (BuildContext context) =>
       new SampleBottomNavigationBar(),
+  '/nestedAppBar': (BuildContext context) => new SampleNestedAppBar(),
 };

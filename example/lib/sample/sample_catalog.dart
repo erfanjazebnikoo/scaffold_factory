@@ -149,7 +149,7 @@ final catalogItems = [
   CatalogOption(
     "Nested Scroll View",
     "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png",
-    "",
+    "/nestedAppBar",
   ),
   CatalogOption(
     "Snack Bar",

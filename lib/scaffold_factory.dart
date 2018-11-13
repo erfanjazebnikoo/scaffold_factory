@@ -5,6 +5,7 @@ class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
   ScaffoldFactoryButtonsBehavior buttonsBehavior;
   bool primary = true;
+  Widget bodyWidget;
 
   /// Color, Palette and Theme
   MaterialPalette colorPalette;
@@ -12,9 +13,13 @@ class ScaffoldFactory {
   BackgroundType backgroundType;
   TextTheme textTheme;
 
-  /// Appbar
+  /// App bar
   bool appBarVisibility;
   AppBar appBar;
+
+  /// Nested app bar
+  bool nestedAppBarVisibility;
+  NestedScrollView nestedAppBar;
 
   /// Floating Action Button
   bool floatingActionButtonVisibility = false;
@@ -38,22 +43,31 @@ class ScaffoldFactory {
     bool appBarVisibility = false,
     bool floatingActionButtonVisibility = false,
     bool bottomNavigationBarVisibility = false,
+    bool nestedAppBarVisibility = false,
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
-    Widget appBar,
+    AppBar appBar,
     Widget bottomNavigationBar,
+    NestedScrollView nestedAppBar,
   }) {
-    this.backgroundType = backgroundType;
     this.appBarVisibility = appBarVisibility;
     this.floatingActionButtonVisibility = floatingActionButtonVisibility;
     this.bottomNavigationBarVisibility = bottomNavigationBarVisibility;
+    this.nestedAppBarVisibility = nestedAppBarVisibility;
+    this.backgroundType = backgroundType;
     this.floatingActionButton = floatingActionButton;
     this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
     this.bottomNavigationBar = bottomNavigationBar;
+    this.nestedAppBar = nestedAppBar;
   }
 
   Widget build(Widget bodyWidget) {
+    this.bodyWidget = bodyWidget ?? Center();
+    if (appBarVisibility && nestedAppBarVisibility) {
+      throw Exception(
+          "Both app bar widget and nested app bar widget are being used simultaneously. Make app bar widget or nested app bar widget invisible for resolving this issue.");
+    }
     return Scaffold(
       key: scaffoldKey,
       primary: primary,
@@ -77,10 +91,8 @@ class ScaffoldFactory {
                 )
               : null,
         ),
-//        child: isVisible(nestedAppbarVisibility)
-//            ? _buildNestedScrollView(bodyWidget)
-//            : bodyWidget ?? Center(),
-        child: bodyWidget,
+        child: nestedAppBarVisibility ? this.nestedAppBar : this.bodyWidget,
+//        child: bodyWidget,
       ),
     );
   }
@@ -129,28 +141,44 @@ class ScaffoldFactory {
     );
   }
 
-//  NestedScrollView _buildNestedScrollView(Widget bodyWidget) {
-//    return NestedScrollView(
-////                controller: scrollController ??
-////                    ScrollController(initialScrollOffset: 0.0),
-//      headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
-//        return <Widget>[
-//          CustomSliverAppBar(
-//            showTabBar: isVisible(appBarTabBarVisibility),
-//            tabList: this.tabList,
-//            tabColor: this.colorPalette.primaryColor,
-//            isScrollable: this.isTabScrollable,
-//            showTitle: isVisible(appBarTitleVisibility),
-//            tabController: tabController,
-//            title: this.appBarTitle,
-//            backButtonColor: backButtonColor,
-//            floating: appBarFloating,
-//          )
-//        ];
-//      },
-//      body: bodyWidget ?? Center(),
-//    );
-//  }
+  NestedScrollView buildNestedScrollView({
+    @required bool titleVisibility,
+    @required bool leadingVisibility,
+    @required bool tabBarVisibility,
+    bool scrollableTab,
+    List<Widget> tabWidgetList,
+    TabController tabController,
+    Widget titleWidget,
+    Widget leadingWidget,
+    Color backgroundColor,
+    bool centerTitle = false,
+    bool floating = false,
+  }) {
+    return NestedScrollView(
+      headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            backgroundColor: backgroundColor,
+            centerTitle: centerTitle,
+            pinned: true,
+            floating: floating,
+            forceElevated: true,
+            leading: leadingVisibility ? leadingWidget : null,
+            title: titleVisibility ? titleWidget : null,
+            bottom: tabBarVisibility
+                ? TabBar(
+                    isScrollable: scrollableTab,
+                    tabs: tabWidgetList,
+                    controller: tabController,
+                    indicatorWeight: 4.0,
+                  )
+                : null,
+          ),
+        ];
+      },
+      body: this.bodyWidget,
+    );
+  }
 
   Widget buildBottomNavigationBar({
     @required List<BottomNavigationBarItem> items,
