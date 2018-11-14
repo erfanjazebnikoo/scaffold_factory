@@ -218,7 +218,7 @@ class ScaffoldFactory {
 //
 //  _changeStatusColor(Color color) async {
 //    try {
-//      await FlutterStatusbarcolor.setStatusBarColor(color);
+//      await FlutterStatusBarColor.setStatusBarColor(color);
 //    } on PlatformException catch (e) {
 //      print(e);
 //    }
@@ -226,7 +226,7 @@ class ScaffoldFactory {
 //
 //  _changeNavigationColor(Color color) async {
 //    try {
-//      await FlutterStatusbarcolor.setNavigationBarColor(color);
+//      await FlutterStatusBarColor.setNavigationBarColor(color);
 //    } on PlatformException catch (e) {
 //      print(e);
 //    }
@@ -248,6 +248,63 @@ class ScaffoldFactory {
 //    });
 //  }
 
+  void showSnackBar({
+    @required SnackBarMessageType messageType,
+    @required bool iconVisibility,
+    String message = "",
+    Duration duration,
+    Color backgroundColor = Colors.black,
+    Color textColor = Colors.white,
+    Color iconColor = Colors.white,
+    TextDirection textDirection = TextDirection.ltr,
+  }) {
+    IconData icon;
+    switch (messageType) {
+      case SnackBarMessageType.info:
+        icon = Icons.info;
+        break;
+      case SnackBarMessageType.warning:
+        icon = Icons.warning;
+        break;
+      case SnackBarMessageType.error:
+        icon = Icons.error;
+        break;
+      case SnackBarMessageType.successful:
+        icon = Icons.done;
+        break;
+      case SnackBarMessageType.failed:
+        icon = Icons.close;
+        break;
+      case SnackBarMessageType.none:
+        break;
+    }
+
+    final text = Text(
+      message,
+      style: this.textTheme.subhead.copyWith(color: textColor),
+    );
+
+    this.scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            backgroundColor: backgroundColor,
+            duration: duration ?? Duration(seconds: 1),
+            content: Directionality(
+              textDirection: textDirection,
+              child: iconVisibility
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Icon(icon, color: iconColor),
+                        SizedBox(width: 4.0),
+                        text,
+                      ],
+                    )
+                  : text,
+            ),
+          ),
+        );
+  }
+
   void launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -267,6 +324,15 @@ enum BackgroundType {
   normal,
   solidColor,
   gradient,
+}
+
+enum SnackBarMessageType {
+  info,
+  warning,
+  error,
+  successful,
+  failed,
+  none,
 }
 
 class MaterialPalette {

@@ -4,6 +4,7 @@ import 'package:scaffold_factory_example/sample/sample_bottom_navigation_bar.dar
 import 'package:scaffold_factory_example/sample/sample_catalog.dart';
 import 'package:scaffold_factory_example/sample/sample_floating_action_button.dart';
 import 'package:scaffold_factory_example/sample/sample_nested_app_bar.dart';
+import 'package:scaffold_factory_example/sample/sample_snack_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_tab_bar.dart';
 
 void main() => runApp(new MyApp());
@@ -29,4 +30,5 @@ final routes = {
       new SampleBottomNavigationBar(),
   '/nestedAppBar': (BuildContext context) => new SampleNestedAppBar(),
   '/tabBar': (BuildContext context) => new SampleTabBar(),
+  '/snackBar': (BuildContext context) => new SampleSnackBar(),
 };

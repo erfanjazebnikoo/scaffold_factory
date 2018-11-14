@@ -1,3 +1,9 @@
+## 0.5.0
+
+* Add new sample for snack bar
+* Add mehtod to scaffold factory for showing snack bar      
+* Modify sample floating action button and use snack bar 
+
 ## 0.4.0
 
 * Add sample_tab_bar.dart file and implement an example of tab bar widget in scafoold factory

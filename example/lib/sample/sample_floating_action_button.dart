@@ -152,5 +152,9 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
   @override
   void onFloatingActionButtonPressed() {
     print("Scaffold Factory => onFloatingActionButtonPressed()");
+    _scaffoldFactory.showSnackBar(
+        messageType: SnackBarMessageType.none,
+        iconVisibility: false,
+        message: "Floating action button pressed");
   }
 }

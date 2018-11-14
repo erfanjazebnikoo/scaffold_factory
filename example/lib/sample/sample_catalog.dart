@@ -155,7 +155,7 @@ final catalogItems = [
   CatalogOption(
     "Snack Bar",
     "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VSjZkendtc19iZ2M/components_snackbars.png",
-    "",
+    "/snackBar",
   ),
   CatalogOption(
     "Drawer",
