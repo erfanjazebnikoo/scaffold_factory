@@ -5,7 +5,6 @@ class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
   ScaffoldFactoryButtonsBehavior buttonsBehavior;
   bool primary = true;
-  Widget bodyWidget;
 
   /// Color, Palette and Theme
   MaterialPalette colorPalette;
@@ -59,14 +58,13 @@ class ScaffoldFactory {
     this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
     this.bottomNavigationBar = bottomNavigationBar;
-    this.nestedAppBar = nestedAppBar;
   }
 
   Widget build(Widget bodyWidget) {
-    this.bodyWidget = bodyWidget ?? Center();
     if (appBarVisibility && nestedAppBarVisibility) {
       throw Exception(
-          "Both app bar widget and nested app bar widget are being used simultaneously. Make app bar widget or nested app bar widget invisible for resolving this issue.");
+          "Both app bar widget and nested app bar widget are being used simultaneously. \n" +
+              "Make app bar widget or nested app bar widget invisible for resolving this issue.");
     }
     return Scaffold(
       key: scaffoldKey,
@@ -91,7 +89,7 @@ class ScaffoldFactory {
                 )
               : null,
         ),
-        child: nestedAppBarVisibility ? this.nestedAppBar : this.bodyWidget,
+        child: nestedAppBarVisibility ? this.nestedAppBar : bodyWidget,
 //        child: bodyWidget,
       ),
     );
@@ -113,6 +111,7 @@ class ScaffoldFactory {
       leading: leadingVisibility ? leadingWidget : null,
       title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
+
 //      flexibleSpace: !isVisible(appBarTitleVisibility)
 //          ? Column(
 //              mainAxisAlignment: MainAxisAlignment.end,
@@ -145,6 +144,7 @@ class ScaffoldFactory {
     @required bool titleVisibility,
     @required bool leadingVisibility,
     @required bool tabBarVisibility,
+    @required Widget bodyWidget,
     bool scrollableTab,
     List<Widget> tabWidgetList,
     TabController tabController,
@@ -159,10 +159,6 @@ class ScaffoldFactory {
         return <Widget>[
           SliverAppBar(
             backgroundColor: backgroundColor,
-            centerTitle: centerTitle,
-            pinned: true,
-            floating: floating,
-            forceElevated: true,
             leading: leadingVisibility ? leadingWidget : null,
             title: titleVisibility ? titleWidget : null,
             bottom: tabBarVisibility
@@ -173,10 +169,15 @@ class ScaffoldFactory {
                     indicatorWeight: 4.0,
                   )
                 : null,
+            centerTitle: centerTitle,
+            floating: floating,
+            pinned: true,
+            automaticallyImplyLeading: false,
+            forceElevated: true,
           ),
         ];
       },
-      body: this.bodyWidget,
+      body: bodyWidget,
     );
   }
 
