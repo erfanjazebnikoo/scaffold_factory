@@ -46,7 +46,6 @@ class ScaffoldFactory {
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
     AppBar appBar,
-    Widget bottomNavigationBar,
     NestedScrollView nestedAppBar,
   }) {
     this.appBarVisibility = appBarVisibility;
@@ -57,7 +56,6 @@ class ScaffoldFactory {
     this.floatingActionButton = floatingActionButton;
     this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
-    this.bottomNavigationBar = bottomNavigationBar;
   }
 
   Widget build(Widget bodyWidget) {
@@ -100,10 +98,14 @@ class ScaffoldFactory {
   AppBar buildAppBar({
     @required bool titleVisibility,
     @required bool leadingVisibility,
+    @required bool tabBarVisibility,
     Widget titleWidget,
     Widget leadingWidget,
     Color backgroundColor,
     bool centerTitle = false,
+    bool scrollableTab,
+    TabController tabController,
+    List<Widget> tabWidgetList,
   }) {
     return AppBar(
       backgroundColor: backgroundColor,
@@ -111,32 +113,14 @@ class ScaffoldFactory {
       leading: leadingVisibility ? leadingWidget : null,
       title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
-
-//      flexibleSpace: !isVisible(appBarTitleVisibility)
-//          ? Column(
-//              mainAxisAlignment: MainAxisAlignment.end,
-//              children: [
-//                isVisible(appBarTabBarVisibility)
-//                    ? TabBar(
-//                        isScrollable: this.isTabScrollable,
-//                        tabs: this.tabList,
-//                        controller: this.tabController,
-//                        indicatorWeight: 4.0,
-//                      )
-//                    : null,
-//              ],
-//            )
-//          : null,
-//      bottom: isVisible(appBarTitleVisibility)
-//          ? isVisible(appBarTabBarVisibility)
-//              ? TabBar(
-//                  isScrollable: this.isTabScrollable,
-//                  tabs: this.tabList,
-//                  controller: this.tabController,
-//                  indicatorWeight: 4.0,
-//                )
-//              : null
-//          : null,
+      bottom: tabBarVisibility
+          ? TabBar(
+              isScrollable: scrollableTab,
+              tabs: tabWidgetList,
+              controller: tabController,
+              indicatorWeight: 4.0,
+            )
+          : null,
     );
   }
 
@@ -185,11 +169,13 @@ class ScaffoldFactory {
     @required List<BottomNavigationBarItem> items,
     @required ValueChanged<int> onTap,
     int currentIndex = 0,
+    Color color,
   }) {
     return BottomNavigationBar(
       onTap: onTap,
       currentIndex: currentIndex,
       items: items,
+      fixedColor: color,
     );
   }
 

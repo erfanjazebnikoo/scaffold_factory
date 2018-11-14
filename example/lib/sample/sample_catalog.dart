@@ -37,6 +37,7 @@ class _SampleCatalogState extends State<SampleCatalog>
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: true,
         leadingVisibility: false,
+        tabBarVisibility: false,
         titleWidget: const Text('Scaffold Factory examples catalog'),
         backgroundColor: _sampleColorPalette.primaryColor,
       ),
@@ -144,7 +145,7 @@ final catalogItems = [
   CatalogOption(
     "Tab Bar",
     "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png",
-    "",
+    "/tabBar",
   ),
   CatalogOption(
     "Nested Scroll View",

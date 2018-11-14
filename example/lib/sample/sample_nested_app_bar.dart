@@ -77,11 +77,33 @@ class _SampleNestedAppBarState extends State<SampleNestedAppBar>
   }
 
   Widget _buildTabBar(BuildContext context) {
+    final colors = [
+      Colors.purpleAccent,
+      Colors.purple,
+      Colors.deepPurple,
+      Colors.deepPurpleAccent,
+    ];
     return TabBarView(
       children: [
-        SamplePlaceholder(Colors.deepPurple, "Page 1 Screen"),
-        SamplePlaceholder(Colors.lightBlue, "Page 2 Screen"),
-        SamplePlaceholder(Colors.orange, "Page 3 Screen"),
+        CustomScrollView(
+          scrollDirection: Axis.vertical,
+          slivers: [
+            SliverList(
+              delegate: SliverChildListDelegate(
+                List.generate(
+                  4,
+                  (int index) => Container(
+                        height: 500.0,
+                        child: SamplePlaceholder(
+                            colors[index], "Slide $index Screen"),
+                      ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SamplePlaceholder(Colors.orange, "Page 2 Screen"),
+        SamplePlaceholder(Colors.lightBlue, "Page 3 Screen"),
         SamplePlaceholder(Colors.green, "Page 4 Screen"),
         SamplePlaceholder(Colors.red, "Page 5 Screen"),
         SamplePlaceholder(Colors.yellow, "Page 6 Screen"),

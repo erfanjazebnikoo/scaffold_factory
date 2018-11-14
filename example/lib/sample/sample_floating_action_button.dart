@@ -12,8 +12,8 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(
-    primaryColor: Colors.orange,
-    accentColor: Colors.deepOrange,
+    primaryColor: Colors.teal,
+    accentColor: Colors.redAccent,
   );
   static bool _fabCenterSwitch;
   static bool _fabFloatingSwitch;
@@ -41,6 +41,7 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: true,
         leadingVisibility: true,
+        tabBarVisibility: false,
         titleWidget: const Text('FAB Configuration'),
         leadingWidget: IconButton(
           icon: Icon(Icons.arrow_back),

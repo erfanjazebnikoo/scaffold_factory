@@ -12,16 +12,14 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
     implements ScaffoldFactoryButtonsBehavior {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
-  MaterialPalette _sampleColorPalette = MaterialPalette(
-    primaryColor: Colors.orange,
-    accentColor: Colors.deepOrange,
-  );
-
   int _currentIndex = 0;
-
-  final List<Widget> _bodyChildren = [
+  MaterialPalette _sampleColorPalette = MaterialPalette(
+    primaryColor: Colors.deepOrange,
+    accentColor: Colors.indigoAccent,
+  );
+  final _bodyChildren = [
     SamplePlaceholder(Colors.lightBlue, "Home Screen"),
-    SamplePlaceholder(Colors.deepOrange, "Messages Screen"),
+    SamplePlaceholder(Colors.orange, "Messages Screen"),
     SamplePlaceholder(Colors.green, "Profile Screen")
   ];
 
@@ -49,11 +47,12 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
       appBarVisibility: true,
       floatingActionButtonVisibility: false,
       bottomNavigationBarVisibility: true,
-//      bottomNavigationBar: _buildBottomNavigationBar(),
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: true,
         leadingVisibility: true,
+        tabBarVisibility: false,
         titleWidget: const Text('Navigation Bar Configuration'),
+        backgroundColor: _scaffoldFactory.colorPalette.primaryColor,
         leadingWidget: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => this.onBackButtonPressed(),
@@ -79,6 +78,7 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
         ),
       ],
       currentIndex: _currentIndex,
+      color: _scaffoldFactory.colorPalette.accentColor,
       onTap: (int index) {
         setState(() {
           _currentIndex = index;
