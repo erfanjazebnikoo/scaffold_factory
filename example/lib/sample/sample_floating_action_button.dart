@@ -8,7 +8,7 @@ class SampleFloatingActionButton extends StatefulWidget {
 }
 
 class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
-    implements ScaffoldFactoryButtonsBehavior {
+    implements ScaffoldFactoryBehaviors {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(
@@ -32,8 +32,11 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
   }
 
   void _initScaffoldFactory() {
-    _scaffoldFactory = ScaffoldFactory(_scaffoldKey, _sampleColorPalette);
-    _scaffoldFactory.buttonsBehavior = this;
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
@@ -156,5 +159,10 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
         messageType: SnackBarMessageType.none,
         iconVisibility: false,
         message: "Floating action button pressed");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
   }
 }

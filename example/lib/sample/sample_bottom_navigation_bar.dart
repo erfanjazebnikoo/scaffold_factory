@@ -9,7 +9,7 @@ class SampleBottomNavigationBar extends StatefulWidget {
 }
 
 class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
-    implements ScaffoldFactoryButtonsBehavior {
+    implements ScaffoldFactoryBehaviors {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   int _currentIndex = 0;
@@ -39,8 +39,11 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
   }
 
   void _initScaffoldFactory() {
-    _scaffoldFactory = ScaffoldFactory(_scaffoldKey, _sampleColorPalette);
-    _scaffoldFactory.buttonsBehavior = this;
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
@@ -96,5 +99,10 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
   @override
   void onFloatingActionButtonPressed() {
     print("Scaffold Factory => onFloatingActionButtonPressed()");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
   }
 }

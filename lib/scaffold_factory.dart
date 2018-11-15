@@ -1,9 +1,14 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
+import 'package:scaffold_factory/event_bus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
-  ScaffoldFactoryButtonsBehavior buttonsBehavior;
+  ScaffoldFactoryBehaviors scaffoldFactoryBehavior;
   bool primary = true;
 
   /// Color, Palette and Theme
@@ -31,11 +36,27 @@ class ScaffoldFactory {
   bool bottomNavigationBarVisibility = false;
   Widget bottomNavigationBar;
 
-  factory ScaffoldFactory(GlobalKey<ScaffoldState> scaffoldKey,
-          MaterialPalette materialPalette) =>
-      ScaffoldFactory._internal(scaffoldKey, materialPalette);
+  /// Event Bus
+  StreamSubscription _eventBusSubscription;
 
-  ScaffoldFactory._internal(this.scaffoldKey, this.colorPalette);
+  factory ScaffoldFactory(
+          {@required GlobalKey<ScaffoldState> scaffoldKey,
+          @required MaterialPalette materialPalette,
+          dynamic event}) =>
+      ScaffoldFactory._internal(
+          scaffoldKey: scaffoldKey,
+          colorPalette: materialPalette,
+          event: event);
+
+  ScaffoldFactory._internal(
+      {@required this.scaffoldKey,
+      @required this.colorPalette,
+      dynamic event}) {
+    _eventBusSubscription = eventBus.on<dynamic>().listen((event) async {
+      if (event != null)
+        this.scaffoldFactoryBehavior.onEventBusMessageReceived(event);
+    });
+  }
 
   void init({
     BackgroundType backgroundType = BackgroundType.normal,
@@ -88,7 +109,6 @@ class ScaffoldFactory {
               : null,
         ),
         child: nestedAppBarVisibility ? this.nestedAppBar : bodyWidget,
-//        child: bodyWidget,
       ),
     );
   }
@@ -201,7 +221,8 @@ class ScaffoldFactory {
       bool mini = false}) {
     return FloatingActionButton(
       heroTag: heroTag,
-      onPressed: () => this.buttonsBehavior.onFloatingActionButtonPressed(),
+      onPressed: () =>
+          this.scaffoldFactoryBehavior.onFloatingActionButtonPressed(),
       tooltip: tooltip,
       child: fabBody,
       mini: mini,
@@ -209,44 +230,27 @@ class ScaffoldFactory {
     );
   }
 
-//  changeFrameColor() {
-//    if (Platform.isAndroid) {
-//      _changeStatusColor(this.colorPalette.primaryColor);
-//      _changeNavigationColor(this.colorPalette.secondaryColor);
-//    }
-//  }
-//
-//  _changeStatusColor(Color color) async {
-//    try {
-//      await FlutterStatusBarColor.setStatusBarColor(color);
-//    } on PlatformException catch (e) {
-//      print(e);
-//    }
-//  }
-//
-//  _changeNavigationColor(Color color) async {
-//    try {
-//      await FlutterStatusBarColor.setNavigationBarColor(color);
-//    } on PlatformException catch (e) {
-//      print(e);
-//    }
-//  }
+  void updateAndroidFrameColor() async {
+    if (this.gradientBackgroundColors == null ||
+        this.gradientBackgroundColors.isEmpty) {
+      throw Exception("");
+    }
 
-  void dispose() {
-//    _notificationSubscription.cancel();
+    if (Platform.isAndroid) {
+      try {
+        await FlutterStatusbarcolor.setStatusBarColor(
+            this.gradientBackgroundColors[0]);
+        await FlutterStatusbarcolor.setNavigationBarColor(
+            this.gradientBackgroundColors[1]);
+      } on Exception catch (e) {
+        print(e);
+      }
+    }
   }
 
-//  void checkNotificationStatus() {
-//    SharedPreferences.getInstance().then((SharedPreferences sp) {
-//      notificationActive = sp.getBool("new_notification") ?? false;
-//
-//      if (notificationSeen) {
-//        notificationActive = false;
-//        notificationSeen = false;
-//        sp.setBool("new_notification", notificationActive);
-//      }
-//    });
-//  }
+  void dispose() {
+    _eventBusSubscription.cancel();
+  }
 
   void showSnackBar({
     @required SnackBarMessageType messageType,
@@ -314,10 +318,12 @@ class ScaffoldFactory {
   }
 }
 
-abstract class ScaffoldFactoryButtonsBehavior {
+abstract class ScaffoldFactoryBehaviors {
   void onBackButtonPressed();
 
   void onFloatingActionButtonPressed();
+
+  Future onEventBusMessageReceived(dynamic event);
 }
 
 enum BackgroundType {

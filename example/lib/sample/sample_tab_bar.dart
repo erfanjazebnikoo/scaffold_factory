@@ -9,7 +9,7 @@ class SampleTabBar extends StatefulWidget {
 
 class _SampleTabBarState extends State<SampleTabBar>
     with TickerProviderStateMixin
-    implements ScaffoldFactoryButtonsBehavior {
+    implements ScaffoldFactoryBehaviors {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(
@@ -46,8 +46,11 @@ class _SampleTabBarState extends State<SampleTabBar>
   }
 
   void _initScaffoldFactory() {
-    _scaffoldFactory = ScaffoldFactory(_scaffoldKey, _sampleColorPalette);
-    _scaffoldFactory.buttonsBehavior = this;
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
@@ -225,5 +228,10 @@ class _SampleTabBarState extends State<SampleTabBar>
   @override
   void onFloatingActionButtonPressed() {
     print("Scaffold Factory => onFloatingActionButtonPressed()");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
   }
 }

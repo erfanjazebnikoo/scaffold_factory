@@ -7,7 +7,7 @@ class SampleSnackBar extends StatefulWidget {
 }
 
 class _SampleSnackBarState extends State<SampleSnackBar>
-    implements ScaffoldFactoryButtonsBehavior {
+    implements ScaffoldFactoryBehaviors {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(
@@ -33,8 +33,11 @@ class _SampleSnackBarState extends State<SampleSnackBar>
   }
 
   void _initScaffoldFactory() {
-    _scaffoldFactory = ScaffoldFactory(_scaffoldKey, _sampleColorPalette);
-    _scaffoldFactory.buttonsBehavior = this;
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
@@ -49,18 +52,18 @@ class _SampleSnackBarState extends State<SampleSnackBar>
       padding: EdgeInsets.symmetric(vertical: 8.0),
       child: Column(
         children: <Widget>[
-//          ////////////////////////////////////////////////// App Bar visibility
-//          SwitchListTile(
-//            value: _scaffoldFactory.appBarVisibility,
-//            onChanged: (bool value) {
-//              setState(() {
-//                _scaffoldFactory.appBarVisibility = value;
-//              });
-//            },
-//            activeColor: _scaffoldFactory.colorPalette.accentColor,
-//            title: Text('App Bar'),
-//            subtitle: Text('Change app bar visibility'),
-//          ),
+          //////////////////////////////////////////////////
+          SwitchListTile(
+            value: _scaffoldFactory.appBarVisibility,
+            onChanged: (bool value) {
+              setState(() {
+                _scaffoldFactory.appBarVisibility = value;
+              });
+            },
+            activeColor: _scaffoldFactory.colorPalette.accentColor,
+            title: Text('App Bar'),
+            subtitle: Text('Change app bar visibility'),
+          ),
 //          //////////////////////////////////////////// App Bar title visibility
 //          SwitchListTile(
 //            value:
@@ -151,5 +154,10 @@ class _SampleSnackBarState extends State<SampleSnackBar>
   @override
   void onFloatingActionButtonPressed() {
     print("Scaffold Factory => onFloatingActionButtonPressed()");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
   }
 }

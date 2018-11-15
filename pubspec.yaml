@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_statusbarcolor: ^0.1.1
+  event_bus: ^1.0.1
   url_launcher: ^4.0.1
 
 # The following section is specific to Flutter.

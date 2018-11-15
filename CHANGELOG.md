@@ -1,3 +1,11 @@
+## 0.6.0
+
+* Add Event bus to scaffold factory. Now, The user can define a custom event, fire it and stop it whenever needs. The Scaffold Factory listen to the bus and call the onEventBusMessageReceived method.
+* Change the name of ScaffoldFactoryButtonsBehavior class to ScaffoldFactoryBehaviors
+* Add a new method to scaffold factory named updateAndroidFrameColor. This method changes android's status bar and navigation bar colors.
+* Add the global EventBus object
+* Modify sample screens
+
 ## 0.5.0
 
 * Add new sample for snack bar
@@ -66,3 +74,7 @@
 
 * Remove .idea folder from repository
 * Clear template data and add constructor of the class
+
+## 0.0.1
+
+* First commit

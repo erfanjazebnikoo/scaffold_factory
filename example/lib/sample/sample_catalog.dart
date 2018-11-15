@@ -7,7 +7,7 @@ class SampleCatalog extends StatefulWidget {
 }
 
 class _SampleCatalogState extends State<SampleCatalog>
-    implements ScaffoldFactoryButtonsBehavior {
+    implements ScaffoldFactoryBehaviors {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(
@@ -28,8 +28,11 @@ class _SampleCatalogState extends State<SampleCatalog>
   }
 
   void _initScaffoldFactory() {
-    _scaffoldFactory = ScaffoldFactory(_scaffoldKey, _sampleColorPalette);
-    _scaffoldFactory.buttonsBehavior = this;
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
 
     _scaffoldFactory.init(
       backgroundType: BackgroundType.normal,
@@ -115,6 +118,11 @@ class _SampleCatalogState extends State<SampleCatalog>
     print("Scaffold Factory => onFloatingActionButtonPressed()");
     _scaffoldFactory
         .launchURL("https://github.com/erfanjazebnikoo/scaffold_factory");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
   }
 }
 
