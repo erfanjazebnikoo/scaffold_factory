@@ -18,9 +18,9 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
     accentColor: Colors.indigoAccent,
   );
   final _bodyChildren = [
-    SamplePlaceholder(Colors.lightBlue, "Home Screen"),
-    SamplePlaceholder(Colors.orange, "Messages Screen"),
-    SamplePlaceholder(Colors.green, "Profile Screen")
+    SamplePlaceholder("Home Screen", color: Colors.lightBlue),
+    SamplePlaceholder("Messages Screen", color: Colors.orange),
+    SamplePlaceholder("Profile Screen", color: Colors.green),
   ];
 
   @override

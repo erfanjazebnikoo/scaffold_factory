@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory_example/sample/sample_app_bar.dart';
+import 'package:scaffold_factory_example/sample/sample_bottom_app_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_bottom_navigation_bar.dart';
 import 'package:scaffold_factory_example/sample/sample_catalog.dart';
 import 'package:scaffold_factory_example/sample/sample_floating_action_button.dart';
@@ -28,6 +29,7 @@ final routes = {
       new SampleFloatingActionButton(),
   '/bottomNavigationBar': (BuildContext context) =>
       new SampleBottomNavigationBar(),
+  '/bottomAppBar': (BuildContext context) => new SampleBottomAppBar(),
   '/nestedAppBar': (BuildContext context) => new SampleNestedAppBar(),
   '/tabBar': (BuildContext context) => new SampleTabBar(),
   '/snackBar': (BuildContext context) => new SampleSnackBar(),

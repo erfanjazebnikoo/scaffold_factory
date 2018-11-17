@@ -170,14 +170,14 @@ class _SampleTabBarState extends State<SampleTabBar>
     return TabBarView(
       children: [
         _buildBody(context),
-        SamplePlaceholder(Colors.lightBlue, "Page 2 Screen"),
-        SamplePlaceholder(Colors.orange, "Page 3 Screen"),
-        SamplePlaceholder(Colors.green, "Page 4 Screen"),
-        SamplePlaceholder(Colors.red, "Page 5 Screen"),
-        SamplePlaceholder(Colors.yellow, "Page 6 Screen"),
-        SamplePlaceholder(Colors.blue, "Page 7 Screen"),
-        SamplePlaceholder(Colors.pink, "Page 8 Screen"),
-        SamplePlaceholder(Colors.lime, "Page 9 Screen"),
+        SamplePlaceholder("Page 2 Screen", color: Colors.lightBlue),
+        SamplePlaceholder("Page 3 Screen", color: Colors.orange),
+        SamplePlaceholder("Page 4 Screen", color: Colors.green),
+        SamplePlaceholder("Page 5 Screen", color: Colors.red),
+        SamplePlaceholder("Page 6 Screen", color: Colors.yellow),
+        SamplePlaceholder("Page 7 Screen", color: Colors.blue),
+        SamplePlaceholder("Page 8 Screen", color: Colors.pink),
+        SamplePlaceholder("Page 9 Screen", color: Colors.lime),
       ],
       controller: _tabController,
     );

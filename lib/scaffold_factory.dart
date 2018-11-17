@@ -30,11 +30,14 @@ class ScaffoldFactory {
   Widget floatingActionButton;
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
-  bool showNotch = true;
 
   /// Bottom Navigation Bar
   bool bottomNavigationBarVisibility = false;
   Widget bottomNavigationBar;
+
+  /// Drawer
+  bool drawerVisibility;
+  Widget drawer;
 
   /// Event Bus
   StreamSubscription _eventBusSubscription;
@@ -64,19 +67,27 @@ class ScaffoldFactory {
     bool floatingActionButtonVisibility = false,
     bool bottomNavigationBarVisibility = false,
     bool nestedAppBarVisibility = false,
+    bool drawerVisibility = false,
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
     AppBar appBar,
     NestedScrollView nestedAppBar,
+    Widget drawer,
+    Widget bottomNavigationBar,
+    List<Color> gradientBackgroundColors,
   }) {
     this.appBarVisibility = appBarVisibility;
     this.floatingActionButtonVisibility = floatingActionButtonVisibility;
     this.bottomNavigationBarVisibility = bottomNavigationBarVisibility;
     this.nestedAppBarVisibility = nestedAppBarVisibility;
+    this.drawerVisibility = drawerVisibility;
     this.backgroundType = backgroundType;
     this.floatingActionButton = floatingActionButton;
     this.fabLocation = floatingActionButtonLocation;
     this.appBar = appBar;
+    this.drawer = drawer;
+    this.bottomNavigationBar = bottomNavigationBar;
+    this.gradientBackgroundColors = gradientBackgroundColors;
   }
 
   Widget build(Widget bodyWidget) {
@@ -92,6 +103,7 @@ class ScaffoldFactory {
       floatingActionButtonLocation: fabLocation,
       bottomNavigationBar:
           this.bottomNavigationBarVisibility ? this.bottomNavigationBar : null,
+      drawer: this.drawerVisibility ? this.drawer : null,
       floatingActionButton: this.floatingActionButtonVisibility
           ? this.floatingActionButton
           : null,
@@ -199,18 +211,19 @@ class ScaffoldFactory {
     );
   }
 
-  Widget buildBottomAppBar() {
-    return null;
-    //    return CustomBottomAppBar(
-//      textTheme: textTheme,
-//      color: this.colorPalette.primaryColor,
-//      fabLocation: FloatingActionButtonLocation.centerDocked,
-//      showNotch: showNotch,
-//      splashColor: this.colorPalette.accentColor,
-//      navigationOption: navigationOption,
-//      scaffoldFactory: this,
-//      activeNotification: notificationActive,
-//    );
+  Widget buildBottomAppBar({
+    @required Widget child,
+    bool showNotch = false,
+    Color color,
+    Color splashColor,
+  }) {
+    if (floatingActionButtonVisibility)
+      this.fabLocation = FloatingActionButtonLocation.centerDocked;
+    return BottomAppBar(
+      shape: showNotch ? CircularNotchedRectangle() : null,
+      color: color,
+      child: child,
+    );
   }
 
   FloatingActionButton buildFloatingActionButton(
@@ -230,18 +243,16 @@ class ScaffoldFactory {
     );
   }
 
-  void updateAndroidFrameColor() async {
-    if (this.gradientBackgroundColors == null ||
-        this.gradientBackgroundColors.isEmpty) {
-      throw Exception("");
-    }
-
+  void updateAndroidFrameColor({
+    Color statusBarColor,
+    Color navigationBarColor,
+  }) async {
     if (Platform.isAndroid) {
       try {
-        await FlutterStatusbarcolor.setStatusBarColor(
-            this.gradientBackgroundColors[0]);
-        await FlutterStatusbarcolor.setNavigationBarColor(
-            this.gradientBackgroundColors[1]);
+        if (statusBarColor != null)
+          await FlutterStatusbarcolor.setStatusBarColor(statusBarColor);
+        if (navigationBarColor != null)
+          await FlutterStatusbarcolor.setNavigationBarColor(navigationBarColor);
       } on Exception catch (e) {
         print(e);
       }
@@ -342,15 +353,15 @@ enum SnackBarMessageType {
 }
 
 class MaterialPalette {
-  final Color primaryColor;
-  final Color darkPrimaryColor;
-  final Color lightPrimaryColor;
-  final Color secondaryColor;
-  final Color accentColor;
-  final Color textColor;
-  final Color secondaryTextColor;
-  final Color iconColor;
-  final Color dividerColor;
+  Color primaryColor;
+  Color darkPrimaryColor;
+  Color lightPrimaryColor;
+  Color secondaryColor;
+  Color accentColor;
+  Color textColor;
+  Color secondaryTextColor;
+  Color iconColor;
+  Color dividerColor;
 
   MaterialPalette({
     @required this.primaryColor,

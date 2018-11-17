@@ -160,14 +160,19 @@ final catalogItems = [
     "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png",
     "/nestedAppBar",
   ),
+//  CatalogOption(
+//    "Snack Bar",
+//    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VSjZkendtc19iZ2M/components_snackbars.png",
+//    "/snackBar",
+//  ),
+//  CatalogOption(
+//    "Drawer",
+//    "https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VaDhWUXJTTng4ZGs/patterns_navigation_drawer.png",
+//    "",
+//  ),
   CatalogOption(
-    "Snack Bar",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VSjZkendtc19iZ2M/components_snackbars.png",
-    "/snackBar",
-  ),
-  CatalogOption(
-    "Drawer",
-    "https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VaDhWUXJTTng4ZGs/patterns_navigation_drawer.png",
-    "",
+    "Bottom App Bar",
+    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWG5nei0wWXpoczA/components_bottom_navigation.png",
+    "/bottomAppBar",
   ),
 ];

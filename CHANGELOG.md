@@ -1,3 +1,11 @@
+## 0.7.0
+
+* Add bottom app bar to scaffold factory
+* Add drawer to scaffold factory
+* Modify updateAndroidFrameColor method
+* Modify SamplePlaceholder constructor
+* Some bugs fixed
+
 ## 0.6.0
 
 * Add Event bus to scaffold factory. Now, The user can define a custom event, fire it and stop it whenever needs. The Scaffold Factory listen to the bus and call the onEventBusMessageReceived method.
@@ -9,7 +17,7 @@
 ## 0.5.0
 
 * Add new sample for snack bar
-* Add mehtod to scaffold factory for showing snack bar      
+* Add method to scaffold factory for showing snack bar      
 * Modify sample floating action button and use snack bar 
 
 ## 0.4.0

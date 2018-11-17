@@ -4,7 +4,7 @@ class SamplePlaceholder extends StatelessWidget {
   final Color color;
   final String title;
 
-  SamplePlaceholder(this.color, this.title);
+  SamplePlaceholder(this.title, {this.color});
 
   @override
   Widget build(BuildContext context) {
