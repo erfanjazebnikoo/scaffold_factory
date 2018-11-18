@@ -1,3 +1,7 @@
+## 0.7.1
+
+* Add API Documentation
+
 ## 0.7.0
 
 * Add bottom app bar to scaffold factory

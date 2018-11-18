@@ -1,7 +1,7 @@
 name: scaffold_factory
 description: A flutter library to build and customize a screen with a simple and flexible configuration.
-version: 0.6.0
-author: Erfan Jazeb Nikoo
+version: 0.7.1
+author: Erfan Jazeb Nikoo <erfan.jazebnikoo@gmail.com>
 homepage: https://github.com/erfanjazebnikoo/scaffold_factory
 
 environment:

@@ -15,9 +15,9 @@ class _SampleSnackBarState extends State<SampleSnackBar>
     accentColor: Colors.tealAccent,
   );
 
-  static bool _appBarTitleSwitch;
-  static bool _appBarLeadingSwitch;
-  static bool _centerTitleSwitch;
+//  static bool _appBarTitleSwitch;
+//  static bool _appBarLeadingSwitch;
+//  static bool _centerTitleSwitch;
 
   @override
   void initState() {
@@ -127,9 +127,9 @@ class _SampleSnackBarState extends State<SampleSnackBar>
       {bool titleVisibility = true,
       bool leadingVisibility = true,
       bool centerTitle = false}) {
-    _appBarTitleSwitch = titleVisibility;
-    _centerTitleSwitch = centerTitle;
-    _appBarLeadingSwitch = leadingVisibility;
+//    _appBarTitleSwitch = titleVisibility;
+//    _centerTitleSwitch = centerTitle;
+//    _appBarLeadingSwitch = leadingVisibility;
 
     return _scaffoldFactory.buildAppBar(
       titleVisibility: titleVisibility,
