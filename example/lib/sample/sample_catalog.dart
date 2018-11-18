@@ -3,7 +3,7 @@ import 'package:scaffold_factory/scaffold_factory.dart';
 
 class SampleCatalog extends StatefulWidget {
   @override
-  _SampleCatalogState createState() => new _SampleCatalogState();
+  _SampleCatalogState createState() => _SampleCatalogState();
 }
 
 class _SampleCatalogState extends State<SampleCatalog>

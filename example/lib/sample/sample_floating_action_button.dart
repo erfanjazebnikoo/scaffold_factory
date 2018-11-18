@@ -4,7 +4,7 @@ import 'package:scaffold_factory/scaffold_factory.dart';
 class SampleFloatingActionButton extends StatefulWidget {
   @override
   _SampleFloatingActionButtonState createState() =>
-      new _SampleFloatingActionButtonState();
+      _SampleFloatingActionButtonState();
 }
 
 class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>

@@ -1,0 +1,25 @@
+analyzer:
+  language:
+    enableSuperMixins: true
+  errors:
+    todo: ignore
+    dead_code: error
+    override_on_non_overriding_method: error
+    unused_element: error
+    unused_import: error
+    unused_local_variable: error
+
+linter:
+  rules:
+    - camel_case_types
+    - empty_constructor_bodies
+    - annotate_overrides
+    - avoid_init_to_null
+    - constant_identifier_names
+    - slash_for_doc_comments
+    - unnecessary_brace_in_string_interps
+    - avoid_empty_else
+    - cancel_subscriptions
+    - close_sinks
+    - unnecessary_const
+    - unnecessary_new

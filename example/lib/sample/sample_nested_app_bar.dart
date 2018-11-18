@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
-import 'package:scaffold_factory_example/sample/sample_placeholder.dart';
+import 'sample_placeholder.dart';
 
 class SampleNestedAppBar extends StatefulWidget {
   @override
-  _SampleNestedAppBarState createState() => new _SampleNestedAppBarState();
+  _SampleNestedAppBarState createState() => _SampleNestedAppBarState();
 }
 
 class _SampleNestedAppBarState extends State<SampleNestedAppBar>

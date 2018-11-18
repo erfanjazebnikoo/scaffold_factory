@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
-import 'package:scaffold_factory_example/sample/sample_placeholder.dart';
+import 'sample_placeholder.dart';
 
 class SampleBottomAppBar extends StatefulWidget {
   @override
-  _SampleBottomAppBarState createState() => new _SampleBottomAppBarState();
+  _SampleBottomAppBarState createState() => _SampleBottomAppBarState();
 }
 
 class _SampleBottomAppBarState extends State<SampleBottomAppBar>

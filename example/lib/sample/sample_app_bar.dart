@@ -3,7 +3,7 @@ import 'package:scaffold_factory/scaffold_factory.dart';
 
 class SampleAppBar extends StatefulWidget {
   @override
-  _SampleAppBarState createState() => new _SampleAppBarState();
+  _SampleAppBarState createState() => _SampleAppBarState();
 }
 
 class _SampleAppBarState extends State<SampleAppBar>

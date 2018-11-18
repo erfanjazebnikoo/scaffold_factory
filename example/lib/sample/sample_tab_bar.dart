@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
-import 'package:scaffold_factory_example/sample/sample_placeholder.dart';
+
+import 'sample_placeholder.dart';
 
 class SampleTabBar extends StatefulWidget {
   @override
-  _SampleTabBarState createState() => new _SampleTabBarState();
+  _SampleTabBarState createState() => _SampleTabBarState();
 }
 
 class _SampleTabBarState extends State<SampleTabBar>

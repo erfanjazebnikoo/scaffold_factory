@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:scaffold_factory_example/sample/sample_app_bar.dart';
-import 'package:scaffold_factory_example/sample/sample_bottom_app_bar.dart';
-import 'package:scaffold_factory_example/sample/sample_bottom_navigation_bar.dart';
-import 'package:scaffold_factory_example/sample/sample_catalog.dart';
-import 'package:scaffold_factory_example/sample/sample_floating_action_button.dart';
-import 'package:scaffold_factory_example/sample/sample_nested_app_bar.dart';
-import 'package:scaffold_factory_example/sample/sample_snack_bar.dart';
-import 'package:scaffold_factory_example/sample/sample_tab_bar.dart';
 
-void main() => runApp(new MyApp());
+import 'sample/sample_app_bar.dart';
+import 'sample/sample_bottom_app_bar.dart';
+import 'sample/sample_bottom_navigation_bar.dart';
+import 'sample/sample_catalog.dart';
+import 'sample/sample_floating_action_button.dart';
+import 'sample/sample_nested_app_bar.dart';
+import 'sample/sample_snack_bar.dart';
+import 'sample/sample_tab_bar.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -23,14 +24,13 @@ class MyApp extends StatelessWidget {
 }
 
 final routes = {
-  '/': (BuildContext context) => new SampleCatalog(),
-  '/appBar': (BuildContext context) => new SampleAppBar(),
+  '/': (BuildContext context) => SampleCatalog(),
+  '/appBar': (BuildContext context) => SampleAppBar(),
   '/floatingActionButton': (BuildContext context) =>
-      new SampleFloatingActionButton(),
-  '/bottomNavigationBar': (BuildContext context) =>
-      new SampleBottomNavigationBar(),
-  '/bottomAppBar': (BuildContext context) => new SampleBottomAppBar(),
-  '/nestedAppBar': (BuildContext context) => new SampleNestedAppBar(),
-  '/tabBar': (BuildContext context) => new SampleTabBar(),
-  '/snackBar': (BuildContext context) => new SampleSnackBar(),
+      SampleFloatingActionButton(),
+  '/bottomNavigationBar': (BuildContext context) => SampleBottomNavigationBar(),
+  '/bottomAppBar': (BuildContext context) => SampleBottomAppBar(),
+  '/nestedAppBar': (BuildContext context) => SampleNestedAppBar(),
+  '/tabBar': (BuildContext context) => SampleTabBar(),
+  '/snackBar': (BuildContext context) => SampleSnackBar(),
 };

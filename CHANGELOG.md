@@ -1,3 +1,9 @@
+## 0.7.3
+
+* Add analysis options to project and reformat codes with new rules.
+* Add example file for publishing in dart packages
+* Modify some import path to pass the dry-run analysis
+
 ## 0.7.1
 
 * Add API Documentation
