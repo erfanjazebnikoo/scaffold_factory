@@ -61,6 +61,9 @@ class _SampleFloatingActionButtonState extends State<SampleFloatingActionButton>
         ),
         tooltip: "Scaffold Factory Repository",
       ),
+      bottomNavigationBarVisibility: false,
+      nestedAppBarVisibility: false,
+      drawerVisibility: false,
     );
   }
 

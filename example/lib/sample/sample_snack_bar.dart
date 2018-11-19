@@ -44,6 +44,9 @@ class _SampleSnackBarState extends State<SampleSnackBar>
       appBarVisibility: true,
       floatingActionButtonVisibility: false,
       appBar: _buildAppBar(),
+      bottomNavigationBarVisibility: false,
+      nestedAppBarVisibility: false,
+      drawerVisibility: false,
     );
   }
 

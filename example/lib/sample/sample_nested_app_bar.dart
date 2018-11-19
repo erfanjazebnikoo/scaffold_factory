@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
+
 import 'sample_placeholder.dart';
 
 class SampleNestedAppBar extends StatefulWidget {
@@ -76,6 +77,8 @@ class _SampleNestedAppBarState extends State<SampleNestedAppBar>
       appBarVisibility: false,
       nestedAppBarVisibility: true,
       floatingActionButtonVisibility: false,
+      drawerVisibility: false,
+      bottomNavigationBarVisibility: false,
     );
   }
 

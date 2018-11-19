@@ -68,6 +68,9 @@ class _ExampleScaffoldFactoryState extends State<ExampleScaffoldFactory>
         ),
         tooltip: "Scaffold Factory Repository",
       ),
+      drawerVisibility: false,
+      nestedAppBarVisibility: false,
+      bottomNavigationBarVisibility: false,
     );
   }
 

@@ -58,6 +58,9 @@ class _SampleTabBarState extends State<SampleTabBar>
       appBarVisibility: true,
       floatingActionButtonVisibility: false,
       appBar: _buildAppBar(),
+      bottomNavigationBarVisibility: false,
+      drawerVisibility: false,
+      nestedAppBarVisibility: false,
     );
   }
 

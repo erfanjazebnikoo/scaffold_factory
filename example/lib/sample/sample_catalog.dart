@@ -53,6 +53,9 @@ class _SampleCatalogState extends State<SampleCatalog>
         ),
         tooltip: "Scaffold Factory Repository",
       ),
+      drawerVisibility: false,
+      nestedAppBarVisibility: false,
+      bottomNavigationBarVisibility: false,
     );
   }
 

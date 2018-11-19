@@ -44,6 +44,9 @@ class _SampleAppBarState extends State<SampleAppBar>
       appBarVisibility: true,
       floatingActionButtonVisibility: false,
       appBar: _buildAppBar(),
+      bottomNavigationBarVisibility: false,
+      nestedAppBarVisibility: false,
+      drawerVisibility: false,
     );
   }
 

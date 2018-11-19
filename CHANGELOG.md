@@ -1,3 +1,7 @@
+## 0.7.4
+   
+* Change some scaffold factory's initialize parameters type to required.
+
 ## 0.7.3
 
 * Add analysis options to project and reformat codes with new rules.

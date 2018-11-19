@@ -1,6 +1,4 @@
 analyzer:
-  language:
-    enableSuperMixins: true
   errors:
     todo: ignore
     dead_code: error

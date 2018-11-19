@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
+
 import 'sample_placeholder.dart';
 
 class SampleBottomNavigationBar extends StatefulWidget {
@@ -61,6 +62,8 @@ class _SampleBottomNavigationBarState extends State<SampleBottomNavigationBar>
           onPressed: () => this.onBackButtonPressed(),
         ),
       ),
+      nestedAppBarVisibility: false,
+      drawerVisibility: false,
     );
   }
 

@@ -62,12 +62,12 @@ class ScaffoldFactory {
   }
 
   void init({
+    @required bool appBarVisibility,
+    @required bool floatingActionButtonVisibility,
+    @required bool bottomNavigationBarVisibility,
+    @required bool nestedAppBarVisibility,
+    @required bool drawerVisibility,
     BackgroundType backgroundType = BackgroundType.normal,
-    bool appBarVisibility = false,
-    bool floatingActionButtonVisibility = false,
-    bool bottomNavigationBarVisibility = false,
-    bool nestedAppBarVisibility = false,
-    bool drawerVisibility = false,
     Widget floatingActionButton,
     FloatingActionButtonLocation floatingActionButtonLocation,
     AppBar appBar,

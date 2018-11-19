@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scaffold_factory/scaffold_factory.dart';
+
 import 'sample_placeholder.dart';
 
 class SampleBottomAppBar extends StatefulWidget {
@@ -77,6 +78,8 @@ class _SampleBottomAppBarState extends State<SampleBottomAppBar>
         ),
         tooltip: "Scaffold Factory Repository",
       ),
+      nestedAppBarVisibility: false,
+      drawerVisibility: false,
     );
   }
 
