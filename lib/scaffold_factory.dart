@@ -14,6 +14,7 @@ class ScaffoldFactory {
   /// Color, Palette and Theme
   MaterialPalette colorPalette;
   List<Color> gradientBackgroundColors;
+  Color backgroundColor;
   BackgroundType backgroundType;
   TextTheme textTheme;
 
@@ -75,6 +76,7 @@ class ScaffoldFactory {
     Widget drawer,
     Widget bottomNavigationBar,
     List<Color> gradientBackgroundColors,
+    Color backgroundColor,
   }) {
     this.appBarVisibility = appBarVisibility;
     this.floatingActionButtonVisibility = floatingActionButtonVisibility;
@@ -88,6 +90,7 @@ class ScaffoldFactory {
     this.drawer = drawer;
     this.bottomNavigationBar = bottomNavigationBar;
     this.gradientBackgroundColors = gradientBackgroundColors;
+    this.backgroundColor = backgroundColor;
   }
 
   Widget build(Widget bodyWidget) {
@@ -110,7 +113,7 @@ class ScaffoldFactory {
       body: Container(
         decoration: BoxDecoration(
           color: backgroundType == BackgroundType.solidColor
-              ? colorPalette.primaryColor
+              ? backgroundColor ?? colorPalette.primaryColor
               : null,
           gradient: backgroundType == BackgroundType.gradient
               ? LinearGradient(
@@ -149,7 +152,7 @@ class ScaffoldFactory {
       centerTitle: centerTitle,
       flexibleSpace: useFlexible
           ? Container(
-        alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomCenter,
               child: TabBar(
                 isScrollable: scrollableTab,
                 tabs: tabWidgetList,
@@ -285,6 +288,7 @@ class ScaffoldFactory {
     Color textColor = Colors.white,
     Color iconColor = Colors.white,
     TextDirection textDirection = TextDirection.ltr,
+    TextStyle style,
   }) {
     IconData icon;
     switch (messageType) {
@@ -309,7 +313,8 @@ class ScaffoldFactory {
 
     final text = Text(
       message,
-      style: this.textTheme.subhead.copyWith(color: textColor),
+      style: style.copyWith(color: textColor != null ? textColor : null) ??
+          this.textTheme.subhead.copyWith(color: textColor),
     );
 
     this.scaffoldKey.currentState.showSnackBar(

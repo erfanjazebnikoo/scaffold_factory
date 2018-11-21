@@ -1,3 +1,8 @@
+## 0.7.7
+
+* Now, The user can pass the text style to snack bar
+* Add background color parameter to init method
+
 ## 0.7.5
 
 * Fixed app bar problem. Removed blank space above of tab bar when title and leading widgets are invisible.
