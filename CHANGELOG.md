@@ -1,3 +1,8 @@
+## 0.7.5
+
+* Fixed app bar problem. Removed blank space above of tab bar when title and leading widgets are invisible.
+* Removed category card's background image URL and replaced it with the local asset.
+
 ## 0.7.4
    
 * Change some scaffold factory's initialize parameters type to required.

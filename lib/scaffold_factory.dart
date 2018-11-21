@@ -139,13 +139,26 @@ class ScaffoldFactory {
     TabController tabController,
     List<Widget> tabWidgetList,
   }) {
+    bool useFlexible =
+        !titleVisibility && !leadingVisibility && tabBarVisibility;
     return AppBar(
       backgroundColor: backgroundColor,
       automaticallyImplyLeading: false,
       leading: leadingVisibility ? leadingWidget : null,
       title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
-      bottom: tabBarVisibility
+      flexibleSpace: useFlexible
+          ? Container(
+        alignment: Alignment.bottomCenter,
+              child: TabBar(
+                isScrollable: scrollableTab,
+                tabs: tabWidgetList,
+                controller: tabController,
+                indicatorWeight: 4.0,
+              ),
+            )
+          : null,
+      bottom: !useFlexible && tabBarVisibility
           ? TabBar(
               isScrollable: scrollableTab,
               tabs: tabWidgetList,

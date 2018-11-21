@@ -87,9 +87,10 @@ class _SampleCatalogState extends State<SampleCatalog>
                   child: Stack(
                     fit: StackFit.expand,
                     children: <Widget>[
-                      Image.network(
-                        catalogItems[index].imageUrl,
-                        fit: BoxFit.cover,
+                      Image.asset(
+                        'asset/${catalogItems[index].imageUrl}',
+                        width: 25.0,
+                        fit: BoxFit.fill,
                       ),
                       imageOverlayGradient,
                       Center(
@@ -140,42 +141,42 @@ class CatalogOption {
 final catalogItems = [
   CatalogOption(
     "App Bar",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VclpfSFpuelBGR1k/components_toolbars.png",
+    "components_toolbars.png",
     "/appBar",
   ),
   CatalogOption(
     "Floating Action Button",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VN20tOXJoUjVxQjg/components_buttons_fab.png",
+    "components_buttons_fab.png",
     "/floatingActionButton",
   ),
   CatalogOption(
     "Bottom Navigation Bar",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWG5nei0wWXpoczA/components_bottom_navigation.png",
+    "components_bottom_navigation.png",
     "/bottomNavigationBar",
   ),
   CatalogOption(
     "Tab Bar",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png",
+    "components_tabs.png",
     "/tabBar",
   ),
   CatalogOption(
     "Nested Scroll View",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VaWdBdnhMT3ViXzQ/components_tabs.png",
+    "components_tabs.png",
     "/nestedAppBar",
   ),
 //  CatalogOption(
 //    "Snack Bar",
-//    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VSjZkendtc19iZ2M/components_snackbars.png",
+//    "components_snackbars.png",
 //    "/snackBar",
 //  ),
 //  CatalogOption(
 //    "Drawer",
-//    "https://storage.googleapis.com/material-design/publish/material_v_11/assets/0B7WCemMG6e0VaDhWUXJTTng4ZGs/patterns_navigation_drawer.png",
+//    "patterns_navigation_drawer.png",
 //    "",
 //  ),
   CatalogOption(
     "Bottom App Bar",
-    "https://material-design.storage.googleapis.com/publish/material_v_9/0B7WCemMG6e0VWG5nei0wWXpoczA/components_bottom_navigation.png",
+    "components_bottom_navigation.png",
     "/bottomAppBar",
   ),
 ];

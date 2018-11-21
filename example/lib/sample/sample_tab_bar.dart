@@ -95,9 +95,9 @@ class _SampleTabBarState extends State<SampleTabBar>
             onChanged: _scaffoldFactory.appBarVisibility
                 ? (bool value) {
                     setState(() {
+                      _appBarTitleSwitch = value;
                       _scaffoldFactory.appBar =
                           _buildAppBar(titleVisibility: value);
-                      _appBarTitleSwitch = value;
                     });
                   }
                 : null,
@@ -113,9 +113,9 @@ class _SampleTabBarState extends State<SampleTabBar>
             onChanged: _scaffoldFactory.appBarVisibility
                 ? (bool value) {
                     setState(() {
+                      _appBarLeadingSwitch = value;
                       _scaffoldFactory.appBar =
                           _buildAppBar(leadingVisibility: value);
-                      _appBarLeadingSwitch = value;
                     });
                   }
                 : null,
@@ -131,10 +131,9 @@ class _SampleTabBarState extends State<SampleTabBar>
             onChanged: _scaffoldFactory.appBarVisibility && _appBarTitleSwitch
                 ? (bool value) {
                     setState(() {
-                      _scaffoldFactory.appBar = _buildAppBar(
-                        centerTitle: value,
-                      );
                       _centerTitleSwitch = value;
+                      _scaffoldFactory.appBar =
+                          _buildAppBar(centerTitle: value);
                     });
                   }
                 : null,
@@ -155,9 +154,9 @@ class _SampleTabBarState extends State<SampleTabBar>
             onChanged: _scaffoldFactory.appBarVisibility
                 ? (bool value) {
                     setState(() {
+                      _tabBarSwitch = value;
                       _scaffoldFactory.appBar =
                           _buildAppBar(tabBarVisibility: value);
-                      _tabBarSwitch = value;
                     });
                   }
                 : null,
@@ -187,27 +186,28 @@ class _SampleTabBarState extends State<SampleTabBar>
     );
   }
 
-  AppBar _buildAppBar(
-      {bool titleVisibility = true,
-      bool leadingVisibility = true,
-      bool tabBarVisibility = true,
-      bool centerTitle = false}) {
-    _appBarTitleSwitch = titleVisibility;
-    _centerTitleSwitch = centerTitle;
-    _appBarLeadingSwitch = leadingVisibility;
-    _tabBarSwitch = tabBarVisibility;
+  AppBar _buildAppBar({
+    bool titleVisibility,
+    bool leadingVisibility,
+    bool tabBarVisibility,
+    bool centerTitle,
+  }) {
+    _appBarTitleSwitch = titleVisibility ?? true;
+    _centerTitleSwitch = centerTitle ?? false;
+    _appBarLeadingSwitch = leadingVisibility ?? true;
+    _tabBarSwitch = tabBarVisibility ?? true;
 
     return _scaffoldFactory.buildAppBar(
-        titleVisibility: titleVisibility,
-        leadingVisibility: leadingVisibility,
-        tabBarVisibility: tabBarVisibility,
+        titleVisibility: _appBarTitleSwitch,
+        leadingVisibility: _appBarLeadingSwitch,
+        tabBarVisibility: _tabBarSwitch,
         titleWidget: const Text('App Bar Configuration'),
         leadingWidget: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => this.onBackButtonPressed(),
         ),
         backgroundColor: _sampleColorPalette.primaryColor,
-        centerTitle: centerTitle,
+        centerTitle: _centerTitleSwitch,
         tabWidgetList: [
           Tab(child: Text("Configuration")),
           Tab(child: Text("Page 2")),
