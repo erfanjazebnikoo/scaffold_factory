@@ -53,6 +53,9 @@ class _ExampleScaffoldFactoryState extends State<ExampleScaffoldFactory>
       backgroundType: BackgroundType.normal,
       appBarVisibility: true,
       floatingActionButtonVisibility: true,
+      drawerVisibility: false,
+      nestedAppBarVisibility: false,
+      bottomNavigationBarVisibility: false,
       appBar: _scaffoldFactory.buildAppBar(
         titleVisibility: true,
         leadingVisibility: false,
@@ -68,36 +71,27 @@ class _ExampleScaffoldFactoryState extends State<ExampleScaffoldFactory>
         ),
         tooltip: "Scaffold Factory Repository",
       ),
-      drawerVisibility: false,
-      nestedAppBarVisibility: false,
-      bottomNavigationBarVisibility: false,
     );
   }
 
   Widget _buildBody(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          MaterialButton(
-            onPressed: () {
-              _scaffoldFactory.showSnackBar(
-                messageType: SnackBarMessageType.info,
-                iconVisibility: false,
-                duration: Duration(seconds: 5),
-                message:
-                    "You can visit a sample catalog of other interface implementation using scaffold factory with running main.dart file",
-              );
-            },
-            child: Text(
-              'Sample Button',
-              style: _scaffoldFactory.textTheme.button
-                  .copyWith(color: Colors.white),
-            ),
-            color: _scaffoldFactory.colorPalette.accentColor,
-          ),
-        ],
+    return Center(
+      child: MaterialButton(
+        onPressed: () {
+          _scaffoldFactory.showSnackBar(
+            messageType: SnackBarMessageType.info,
+            iconVisibility: false,
+            duration: Duration(seconds: 5),
+            message:
+                "You can visit a sample catalog of other interface implementation using scaffold factory with running main.dart file",
+          );
+        },
+        child: Text(
+          'Sample Button',
+          style:
+              _scaffoldFactory.textTheme.button.copyWith(color: Colors.white),
+        ),
+        color: _scaffoldFactory.colorPalette.accentColor,
       ),
     );
   }

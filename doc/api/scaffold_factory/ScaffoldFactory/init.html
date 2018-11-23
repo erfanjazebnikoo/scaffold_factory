@@ -47,6 +47,7 @@
       </li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBarVisibility.html">appBarVisibility</a></li>
+      <li><a href="scaffold_factory/ScaffoldFactory/backgroundColor.html">backgroundColor</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/backgroundType.html">backgroundType</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBarVisibility.html">bottomNavigationBarVisibility</a></li>
@@ -95,18 +96,21 @@
     <section class="multi-line-signature">
       <span class="returntype">void</span>
       <span class="name ">init</span>
-(<wbr>{<span class="parameter" id="init-param-backgroundType"><span class="type-annotation"><a href="scaffold_factory/BackgroundType-class.html">BackgroundType</a></span> <span class="parameter-name">backgroundType</span>: <span class="default-value">BackgroundType.normal</span>, </span> <span class="parameter" id="init-param-appBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">appBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-floatingActionButtonVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">floatingActionButtonVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-bottomNavigationBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">bottomNavigationBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-nestedAppBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">nestedAppBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-drawerVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">drawerVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-floatingActionButton"><span class="type-annotation">Widget</span> <span class="parameter-name">floatingActionButton</span>, </span> <span class="parameter" id="init-param-floatingActionButtonLocation"><span class="type-annotation">FloatingActionButtonLocation</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span> <span class="parameter" id="init-param-appBar"><span class="type-annotation">AppBar</span> <span class="parameter-name">appBar</span>, </span> <span class="parameter" id="init-param-nestedAppBar"><span class="type-annotation">NestedScrollView</span> <span class="parameter-name">nestedAppBar</span>, </span> <span class="parameter" id="init-param-drawer"><span class="type-annotation">Widget</span> <span class="parameter-name">drawer</span>, </span> <span class="parameter" id="init-param-bottomNavigationBar"><span class="type-annotation">Widget</span> <span class="parameter-name">bottomNavigationBar</span>, </span> <span class="parameter" id="init-param-gradientBackgroundColors"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">gradientBackgroundColors</span></span> })
+(<wbr>{<span class="parameter" id="init-param-appBarVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">appBarVisibility</span>, </span> <span class="parameter" id="init-param-floatingActionButtonVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">floatingActionButtonVisibility</span>, </span> <span class="parameter" id="init-param-bottomNavigationBarVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">bottomNavigationBarVisibility</span>, </span> <span class="parameter" id="init-param-nestedAppBarVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">nestedAppBarVisibility</span>, </span> <span class="parameter" id="init-param-drawerVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">drawerVisibility</span>, </span> <span class="parameter" id="init-param-backgroundType"><span class="type-annotation"><a href="scaffold_factory/BackgroundType-class.html">BackgroundType</a></span> <span class="parameter-name">backgroundType</span>: <span class="default-value">BackgroundType.normal</span>, </span> <span class="parameter" id="init-param-floatingActionButton"><span class="type-annotation">Widget</span> <span class="parameter-name">floatingActionButton</span>, </span> <span class="parameter" id="init-param-floatingActionButtonLocation"><span class="type-annotation">FloatingActionButtonLocation</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span> <span class="parameter" id="init-param-appBar"><span class="type-annotation">AppBar</span> <span class="parameter-name">appBar</span>, </span> <span class="parameter" id="init-param-nestedAppBar"><span class="type-annotation">NestedScrollView</span> <span class="parameter-name">nestedAppBar</span>, </span> <span class="parameter" id="init-param-drawer"><span class="type-annotation">Widget</span> <span class="parameter-name">drawer</span>, </span> <span class="parameter" id="init-param-bottomNavigationBar"><span class="type-annotation">Widget</span> <span class="parameter-name">bottomNavigationBar</span>, </span> <span class="parameter" id="init-param-gradientBackgroundColors"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">gradientBackgroundColors</span>, </span> <span class="parameter" id="init-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span></span> })
+    </section>
+    <section class="desc markdown">
+      <p>Initialize <a href="scaffold_factory/ScaffoldFactory-class.html">ScaffoldFactory</a> with the scopes you want</p>
     </section>
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span> </h2>
       <pre class="language-dart"><code class="language-dart">void init({
+  @required bool appBarVisibility,
+  @required bool floatingActionButtonVisibility,
+  @required bool bottomNavigationBarVisibility,
+  @required bool nestedAppBarVisibility,
+  @required bool drawerVisibility,
   BackgroundType backgroundType = BackgroundType.normal,
-  bool appBarVisibility = false,
-  bool floatingActionButtonVisibility = false,
-  bool bottomNavigationBarVisibility = false,
-  bool nestedAppBarVisibility = false,
-  bool drawerVisibility = false,
   Widget floatingActionButton,
   FloatingActionButtonLocation floatingActionButtonLocation,
   AppBar appBar,
@@ -114,6 +118,7 @@
   Widget drawer,
   Widget bottomNavigationBar,
   List&lt;Color&gt; gradientBackgroundColors,
+  Color backgroundColor,
 }) {
   this.appBarVisibility = appBarVisibility;
   this.floatingActionButtonVisibility = floatingActionButtonVisibility;
@@ -127,6 +132,7 @@
   this.drawer = drawer;
   this.bottomNavigationBar = bottomNavigationBar;
   this.gradientBackgroundColors = gradientBackgroundColors;
+  this.backgroundColor = backgroundColor;
 }</code></pre>
     </section>
 
@@ -139,7 +145,7 @@
 
 <footer>
   <span class="no-break">
-    scaffold_factory 0.6.0
+    scaffold_factory 0.7.8
   </span>
 
 </footer>

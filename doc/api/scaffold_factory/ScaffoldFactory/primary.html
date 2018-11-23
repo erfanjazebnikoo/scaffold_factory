@@ -47,6 +47,7 @@
       </li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBarVisibility.html">appBarVisibility</a></li>
+      <li><a href="scaffold_factory/ScaffoldFactory/backgroundColor.html">backgroundColor</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/backgroundType.html">backgroundType</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBarVisibility.html">bottomNavigationBarVisibility</a></li>
@@ -97,6 +98,13 @@
           <span class="name ">primary</span>
           <div class="features">read / write</div>
         </section>
+        <section class="desc markdown">
+          <p>Whether this scaffold is being displayed at the top of the screen.</p>
+<p>If true then the height of the <a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a> will be extended by the height
+of the screen's status bar, i.e. the top padding for <code>MediaQuery</code>.</p>
+<p>The default value of this property, like the default value of
+<code>AppBar.primary</code>, is true.</p>
+        </section>
                 <section class="summary source-code" id="source">
           <h2><span>Implementation</span> </h2>
           <pre class="language-dart"><code class="language-dart">bool primary = true
@@ -113,7 +121,7 @@
 
 <footer>
   <span class="no-break">
-    scaffold_factory 0.6.0
+    scaffold_factory 0.7.8
   </span>
 
 </footer>

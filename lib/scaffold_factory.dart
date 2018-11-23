@@ -6,38 +6,130 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:scaffold_factory/event_bus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+/// This is a Flutter plugin to build and customize the Flutter's scaffold
+/// widget with simple and flexible configurations. Also, this plugin
+/// provides various implementations of useful widgets that can be used in
+/// UI design. The scaffold is a class provides APIs for showing drawers,
+/// snack bars, and bottom sheets.
+///
+/// See also:
+///
+///  * [AppBar], which is a horizontal bar typically shown at the top of an app
+///    using the [appBar] property.
+///  * [BottomAppBar], which is a horizontal bar typically shown at the bottom
+///    of an app using the [bottomNavigationBar] property.
+///  * [FloatingActionButton], which is a circular button typically shown in the
+///    bottom right corner of the app using the [floatingActionButton] property.
+///  * [FloatingActionButtonLocation], which is used to place the
+///    [floatingActionButton] within the [Scaffold]'s layout.
+///  * [FloatingActionButtonAnimator], which is used to animate the
+///    [floatingActionButton] from one [floatingActionButtonLocation] to
+///    another.
+///  * [Drawer], which is a vertical panel that is typically displayed to the
+///    left of the body (and often hidden on phones) using the [drawer]
+///    property.
+///  * [BottomNavigationBar], which is a horizontal array of buttons typically
+///    shown along the bottom of the app using the [bottomNavigationBar]
+///    property.
+///  * [SnackBar], which is a temporary notification typically shown near the
+///    bottom of the app using the [ScaffoldState.showSnackBar] method.
+///  * [BottomSheet], which is an overlay typically shown near the bottom of the
+///    app. A bottom sheet can either be persistent, in which case it is shown
+///    using the [ScaffoldState.showBottomSheet] method, or modal, in which case
+///    it is shown using the [showModalBottomSheet] function.
+///  * [ScaffoldState], which is the state associated with this widget.
+///  * <https://material.google.com/layout/structure.html>
 class ScaffoldFactory {
   GlobalKey<ScaffoldState> scaffoldKey;
-  ScaffoldFactoryBehaviors scaffoldFactoryBehavior;
+
+  /// Whether this scaffold is being displayed at the top of the screen.
+  ///
+  /// If true then the height of the [appBar] will be extended by the height
+  /// of the screen's status bar, i.e. the top padding for [MediaQuery].
+  ///
+  /// The default value of this property, like the default value of
+  /// [AppBar.primary], is true.
   bool primary = true;
 
-  /// Color, Palette and Theme
+  /// Your state class can Implements [ScaffoldFactoryBehaviors] interface.
+  /// This interface allows you to listen to the event bus and implement
+  /// the onPressed method for back button and floating action button.
+  ScaffoldFactoryBehaviors scaffoldFactoryBehavior;
+
+  /// The Material Design color system can be used to create a color theme that
+  /// reflects your brand or style.
   MaterialPalette colorPalette;
-  List<Color> gradientBackgroundColors;
-  Color backgroundColor;
+
+  /// Contains
   BackgroundType backgroundType;
+
+  /// The list of gradient colors of the [Material] widget that underlies
+  /// the entire Scaffold.
+  List<Color> gradientBackgroundColors;
+
+  /// The color of the [Material] widget that underlies the entire Scaffold.
+  Color backgroundColor;
+
+  /// Material design text theme.
+  ///
+  /// To obtain the current text theme, call [Theme.of] with the current
+  /// [BuildContext] and read the [ThemeData.textTheme] property.
   TextTheme textTheme;
 
-  /// App bar
+  /// An app bar to display at the top of the scaffold.
+  /// Whether the [nestedAppBar] is being displayed at the screen.
   bool appBarVisibility;
+
+  /// An app bar to display at the top of the scaffold.
   AppBar appBar;
 
-  /// Nested app bar
+  /// Whether the [nestedAppBar] is being displayed at the screen.
+  ///
+  /// Defaults to false.
   bool nestedAppBarVisibility;
+
+  /// A nested app bar to display at the top of the scaffold.
   NestedScrollView nestedAppBar;
 
-  /// Floating Action Button
+  /// Whether the [floatingActionButton] is being displayed at the screen.
+  ///
+  /// Defaults to false.
   bool floatingActionButtonVisibility = false;
+
+  /// A button displayed floating above [body], usually in the bottom right
+  /// corner.
+  ///
+  /// Typically a [FloatingActionButton].
   Widget floatingActionButton;
+
+  /// Responsible for determining where the [floatingActionButton] should go.
+  ///
+  /// If null, the [ScaffoldState] will use the default location, [FloatingActionButtonLocation.endFloat].
   FloatingActionButtonLocation fabLocation =
       FloatingActionButtonLocation.endFloat;
 
-  /// Bottom Navigation Bar
+  /// Whether the [bottomNavigationBar] is being displayed at the screen.
+  ///
+  /// Defaults to false.
   bool bottomNavigationBarVisibility = false;
+
+  /// A bottom navigation bar to display at the bottom of the scaffold.
+  ///
+  /// The [bottomNavigationBar] is rendered below the [persistentFooterButtons]
+  /// and the [body].
   Widget bottomNavigationBar;
 
   /// Drawer
   bool drawerVisibility;
+
+  /// A panel displayed to the side of the [body], often hidden on mobile
+  /// devices. Swipes in from either left-to-right ([TextDirection.ltr]) or
+  /// right-to-left ([TextDirection.rtl])
+  ///
+  /// In the uncommon case that you wish to open the drawer manually, use the
+  /// [ScaffoldState.openDrawer] function.
+  ///
+  /// Typically a [Drawer].
   Widget drawer;
 
   /// Event Bus
@@ -62,6 +154,7 @@ class ScaffoldFactory {
     });
   }
 
+  /// Initialize [ScaffoldFactory] with the scopes you want
   void init({
     @required bool appBarVisibility,
     @required bool floatingActionButtonVisibility,
@@ -99,6 +192,8 @@ class ScaffoldFactory {
           "Both app bar widget and nested app bar widget are being used simultaneously. \n" +
               "Make app bar widget or nested app bar widget invisible for resolving this issue.");
     }
+
+    /// Creates a visual scaffold for material design widgets.
     return Scaffold(
       key: scaffoldKey,
       primary: primary,
@@ -172,6 +267,8 @@ class ScaffoldFactory {
     );
   }
 
+  /// Simple implementation of Nested Scroll View which user can use it with
+  /// easy configuration
   NestedScrollView buildNestedScrollView({
     @required bool titleVisibility,
     @required bool leadingVisibility,
@@ -213,6 +310,8 @@ class ScaffoldFactory {
     );
   }
 
+  /// Simple implementation of Bottom Navigation Bar which user can use it with
+  /// easy configuration
   Widget buildBottomNavigationBar({
     @required List<BottomNavigationBarItem> items,
     @required ValueChanged<int> onTap,
@@ -227,6 +326,8 @@ class ScaffoldFactory {
     );
   }
 
+  /// Simple implementation of Bottom App Bar which user can use it with
+  /// easy configuration
   Widget buildBottomAppBar({
     @required Widget child,
     bool showNotch = false,
@@ -242,6 +343,8 @@ class ScaffoldFactory {
     );
   }
 
+  /// Simple implementation of Floating Action Button which user can use it with
+  /// easy configuration
   FloatingActionButton buildFloatingActionButton(
       {@required Widget fabBody,
       String tooltip = "",
@@ -313,8 +416,9 @@ class ScaffoldFactory {
 
     final text = Text(
       message,
-      style: style.copyWith(color: textColor != null ? textColor : null) ??
-          this.textTheme.subhead.copyWith(color: textColor),
+      style: style != null
+          ? style.copyWith(color: textColor != null ? textColor : null)
+          : this.textTheme.subhead.copyWith(color: textColor),
     );
 
     this.scaffoldKey.currentState.showSnackBar(

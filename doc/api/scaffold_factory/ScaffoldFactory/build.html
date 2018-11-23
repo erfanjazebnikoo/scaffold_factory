@@ -47,6 +47,7 @@
       </li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBarVisibility.html">appBarVisibility</a></li>
+      <li><a href="scaffold_factory/ScaffoldFactory/backgroundColor.html">backgroundColor</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/backgroundType.html">backgroundType</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBarVisibility.html">bottomNavigationBarVisibility</a></li>
@@ -106,6 +107,8 @@
         &quot;Both app bar widget and nested app bar widget are being used simultaneously. \n&quot; +
             &quot;Make app bar widget or nested app bar widget invisible for resolving this issue.&quot;);
   }
+
+  &#47;&#47;&#47; Creates a visual scaffold for material design widgets.
   return Scaffold(
     key: scaffoldKey,
     primary: primary,
@@ -120,7 +123,7 @@
     body: Container(
       decoration: BoxDecoration(
         color: backgroundType == BackgroundType.solidColor
-            ? colorPalette.primaryColor
+            ? backgroundColor ?? colorPalette.primaryColor
             : null,
         gradient: backgroundType == BackgroundType.gradient
             ? LinearGradient(
@@ -145,7 +148,7 @@
 
 <footer>
   <span class="no-break">
-    scaffold_factory 0.6.0
+    scaffold_factory 0.7.8
   </span>
 
 </footer>

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="API docs for the showSnackBar method from the ScaffoldFactory class, for the Dart programming language.">
-  <title>showSnackBar method - ScaffoldFactory class - scaffold_factory library - Dart API</title>
+  <meta name="description" content="API docs for the backgroundColor property from the ScaffoldFactory class, for the Dart programming language.">
+  <title>backgroundColor property - ScaffoldFactory class - scaffold_factory library - Dart API</title>
   <!-- required because all the links are pseudo-absolute -->
   <base href="../..">
 
@@ -26,9 +26,9 @@
     <li><a href="index.html">scaffold_factory</a></li>
     <li><a href="scaffold_factory/scaffold_factory-library.html">scaffold_factory</a></li>
     <li><a href="scaffold_factory/ScaffoldFactory-class.html">ScaffoldFactory</a></li>
-    <li class="self-crumb">showSnackBar method</li>
+    <li class="self-crumb">backgroundColor property</li>
   </ol>
-  <div class="self-name">showSnackBar</div>
+  <div class="self-name">backgroundColor</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -91,76 +91,22 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
-    <h1>showSnackBar method</h1>
+    <h1>backgroundColor property</h1>
 
-    <section class="multi-line-signature">
-      <span class="returntype">void</span>
-      <span class="name ">showSnackBar</span>
-(<wbr>{<span class="parameter" id="showSnackBar-param-messageType"><span>@required</span> <span class="type-annotation"><a href="scaffold_factory/SnackBarMessageType-class.html">SnackBarMessageType</a></span> <span class="parameter-name">messageType</span>, </span> <span class="parameter" id="showSnackBar-param-iconVisibility"><span>@required</span> <span class="type-annotation">bool</span> <span class="parameter-name">iconVisibility</span>, </span> <span class="parameter" id="showSnackBar-param-message"><span class="type-annotation">String</span> <span class="parameter-name">message</span>: <span class="default-value">""</span>, </span> <span class="parameter" id="showSnackBar-param-duration"><span class="type-annotation">Duration</span> <span class="parameter-name">duration</span>, </span> <span class="parameter" id="showSnackBar-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>: <span class="default-value">Colors.black</span>, </span> <span class="parameter" id="showSnackBar-param-textColor"><span class="type-annotation">Color</span> <span class="parameter-name">textColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-iconColor"><span class="type-annotation">Color</span> <span class="parameter-name">iconColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-textDirection"><span class="type-annotation">TextDirection</span> <span class="parameter-name">textDirection</span>: <span class="default-value">TextDirection.ltr</span>, </span> <span class="parameter" id="showSnackBar-param-style"><span class="type-annotation">TextStyle</span> <span class="parameter-name">style</span></span> })
-    </section>
-    
-    <section class="summary source-code" id="source">
-      <h2><span>Implementation</span> </h2>
-      <pre class="language-dart"><code class="language-dart">void showSnackBar({
-  @required SnackBarMessageType messageType,
-  @required bool iconVisibility,
-  String message = &quot;&quot;,
-  Duration duration,
-  Color backgroundColor = Colors.black,
-  Color textColor = Colors.white,
-  Color iconColor = Colors.white,
-  TextDirection textDirection = TextDirection.ltr,
-  TextStyle style,
-}) {
-  IconData icon;
-  switch (messageType) {
-    case SnackBarMessageType.info:
-      icon = Icons.info;
-      break;
-    case SnackBarMessageType.warning:
-      icon = Icons.warning;
-      break;
-    case SnackBarMessageType.error:
-      icon = Icons.error;
-      break;
-    case SnackBarMessageType.successful:
-      icon = Icons.done;
-      break;
-    case SnackBarMessageType.failed:
-      icon = Icons.close;
-      break;
-    case SnackBarMessageType.none:
-      break;
-  }
+        <section class="multi-line-signature">
+          <span class="returntype">Color</span>
+          <span class="name ">backgroundColor</span>
+          <div class="features">read / write</div>
+        </section>
+        <section class="desc markdown">
+          <p>The color of the <code>Material</code> widget that underlies the entire Scaffold.</p>
+        </section>
+                <section class="summary source-code" id="source">
+          <h2><span>Implementation</span> </h2>
+          <pre class="language-dart"><code class="language-dart">Color backgroundColor
 
-  final text = Text(
-    message,
-    style: style != null
-        ? style.copyWith(color: textColor != null ? textColor : null)
-        : this.textTheme.subhead.copyWith(color: textColor),
-  );
-
-  this.scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          backgroundColor: backgroundColor,
-          duration: duration ?? Duration(seconds: 1),
-          content: Directionality(
-            textDirection: textDirection,
-            child: iconVisibility
-                ? Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: &lt;Widget&gt;[
-                      Icon(icon, color: iconColor),
-                      SizedBox(width: 4.0),
-                      text,
-                    ],
-                  )
-                : text,
-          ),
-        ),
-      );
-}</code></pre>
-    </section>
+</code></pre>
+        </section>
 
   </div> <!-- /.main-content -->
 

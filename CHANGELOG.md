@@ -1,3 +1,10 @@
+## 0.7.8
+
+* Modify `example.dart` file and simplify body widget
+* Add comments for `scaffold_factory` variables and methods
+* Enable Super Mixin in `analysis_options.yaml`
+* Update API Documentation
+
 ## 0.7.7
 
 * Now, The user can pass the text style to snack bar

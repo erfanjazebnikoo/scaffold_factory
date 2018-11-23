@@ -57,6 +57,28 @@
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
       <h1>ScaffoldFactory class </h1>
 
+    <section class="desc markdown">
+      <p>This is a Flutter plugin to build and customize the Flutter's scaffold
+widget with simple and flexible configurations. Also, this plugin
+provides various implementations of useful widgets that can be used in
+UI design. The scaffold is a class provides APIs for showing drawers,
+snack bars, and bottom sheets.</p>
+<p>See also:</p><ul><li><code>AppBar</code>, which is a horizontal bar typically shown at the top of an app
+using the <a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a> property.</li><li><code>BottomAppBar</code>, which is a horizontal bar typically shown at the bottom
+of an app using the <a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a> property.</li><li><code>FloatingActionButton</code>, which is a circular button typically shown in the
+bottom right corner of the app using the <a href="scaffold_factory/ScaffoldFactory/floatingActionButton.html">floatingActionButton</a> property.</li><li><code>FloatingActionButtonLocation</code>, which is used to place the
+<a href="scaffold_factory/ScaffoldFactory/floatingActionButton.html">floatingActionButton</a> within the <code>Scaffold</code>'s layout.</li><li><code>FloatingActionButtonAnimator</code>, which is used to animate the
+<a href="scaffold_factory/ScaffoldFactory/floatingActionButton.html">floatingActionButton</a> from one <code>floatingActionButtonLocation</code> to
+another.</li><li><code>Drawer</code>, which is a vertical panel that is typically displayed to the
+left of the body (and often hidden on phones) using the <a href="scaffold_factory/ScaffoldFactory/drawer.html">drawer</a>
+property.</li><li><code>BottomNavigationBar</code>, which is a horizontal array of buttons typically
+shown along the bottom of the app using the <a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a>
+property.</li><li><code>SnackBar</code>, which is a temporary notification typically shown near the
+bottom of the app using the <code>ScaffoldState.showSnackBar</code> method.</li><li><code>BottomSheet</code>, which is an overlay typically shown near the bottom of the
+app. A bottom sheet can either be persistent, in which case it is shown
+using the <code>ScaffoldState.showBottomSheet</code> method, or modal, in which case
+it is shown using the <code>showModalBottomSheet</code> function.</li><li><code>ScaffoldState</code>, which is the state associated with this widget.</li><li><a href="https://material.google.com/layout/structure.html">material.google.com/layout/structure.html</a></li></ul>
+    </section>
     
 
     <section class="summary offset-anchor" id="constructors">
@@ -82,7 +104,7 @@
           <span class="signature">&#8596; AppBar</span> 
         </dt>
         <dd>
-          
+          An app bar to display at the top of the scaffold.
           <div class="features">read / write</div>
 </dd>
         <dt id="appBarVisibility" class="property">
@@ -90,7 +112,16 @@
           <span class="signature">&#8596; bool</span> 
         </dt>
         <dd>
-          App bar
+          An app bar to display at the top of the scaffold.
+Whether the <code>nestedAppBar</code> is being displayed at the screen.
+          <div class="features">read / write</div>
+</dd>
+        <dt id="backgroundColor" class="property">
+          <span class="name"><a href="scaffold_factory/ScaffoldFactory/backgroundColor.html">backgroundColor</a></span>
+          <span class="signature">&#8596; Color</span> 
+        </dt>
+        <dd>
+          The color of the <code>Material</code> widget that underlies the entire Scaffold.
           <div class="features">read / write</div>
 </dd>
         <dt id="backgroundType" class="property">
@@ -98,7 +129,7 @@
           <span class="signature">&#8596; <a href="scaffold_factory/BackgroundType-class.html">BackgroundType</a></span> 
         </dt>
         <dd>
-          
+          Contains
           <div class="features">read / write</div>
 </dd>
         <dt id="bottomNavigationBar" class="property">
@@ -106,7 +137,7 @@
           <span class="signature">&#8596; Widget</span> 
         </dt>
         <dd>
-          
+          A bottom navigation bar to display at the bottom of the scaffold. <a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="bottomNavigationBarVisibility" class="property">
@@ -114,7 +145,7 @@
           <span class="signature">&#8596; bool</span> 
         </dt>
         <dd>
-          Bottom Navigation Bar
+          Whether the <code>bottomNavigationBar</code> is being displayed at the screen. <a href="scaffold_factory/ScaffoldFactory/bottomNavigationBarVisibility.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="colorPalette" class="property">
@@ -122,7 +153,8 @@
           <span class="signature">&#8596; <a href="scaffold_factory/MaterialPalette-class.html">MaterialPalette</a></span> 
         </dt>
         <dd>
-          Color, Palette and Theme
+          The Material Design color system can be used to create a color theme that
+reflects your brand or style.
           <div class="features">read / write</div>
 </dd>
         <dt id="drawer" class="property">
@@ -130,7 +162,9 @@
           <span class="signature">&#8596; Widget</span> 
         </dt>
         <dd>
-          
+          A panel displayed to the side of the <code>body</code>, often hidden on mobile
+devices. Swipes in from either left-to-right (<code>TextDirection.ltr</code>) or
+right-to-left (<code>TextDirection.rtl</code>) <a href="scaffold_factory/ScaffoldFactory/drawer.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="drawerVisibility" class="property">
@@ -146,7 +180,7 @@
           <span class="signature">&#8596; FloatingActionButtonLocation</span> 
         </dt>
         <dd>
-          
+          Responsible for determining where the <code>floatingActionButton</code> should go. <a href="scaffold_factory/ScaffoldFactory/fabLocation.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="floatingActionButton" class="property">
@@ -154,7 +188,8 @@
           <span class="signature">&#8596; Widget</span> 
         </dt>
         <dd>
-          
+          A button displayed floating above <code>body</code>, usually in the bottom right
+corner. <a href="scaffold_factory/ScaffoldFactory/floatingActionButton.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="floatingActionButtonVisibility" class="property">
@@ -162,7 +197,7 @@
           <span class="signature">&#8596; bool</span> 
         </dt>
         <dd>
-          Floating Action Button
+          Whether the <code>floatingActionButton</code> is being displayed at the screen. <a href="scaffold_factory/ScaffoldFactory/floatingActionButtonVisibility.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="gradientBackgroundColors" class="property">
@@ -170,7 +205,8 @@
           <span class="signature">&#8596; List<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> 
         </dt>
         <dd>
-          
+          The list of gradient colors of the <code>Material</code> widget that underlies
+the entire Scaffold.
           <div class="features">read / write</div>
 </dd>
         <dt id="nestedAppBar" class="property">
@@ -178,7 +214,7 @@
           <span class="signature">&#8596; NestedScrollView</span> 
         </dt>
         <dd>
-          
+          A nested app bar to display at the top of the scaffold.
           <div class="features">read / write</div>
 </dd>
         <dt id="nestedAppBarVisibility" class="property">
@@ -186,7 +222,7 @@
           <span class="signature">&#8596; bool</span> 
         </dt>
         <dd>
-          Nested app bar
+          Whether the <code>nestedAppBar</code> is being displayed at the screen. <a href="scaffold_factory/ScaffoldFactory/nestedAppBarVisibility.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="primary" class="property">
@@ -194,7 +230,7 @@
           <span class="signature">&#8596; bool</span> 
         </dt>
         <dd>
-          
+          Whether this scaffold is being displayed at the top of the screen. <a href="scaffold_factory/ScaffoldFactory/primary.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="scaffoldFactoryBehavior" class="property">
@@ -202,7 +238,9 @@
           <span class="signature">&#8596; <a href="scaffold_factory/ScaffoldFactoryBehaviors-class.html">ScaffoldFactoryBehaviors</a></span> 
         </dt>
         <dd>
-          
+          Your state class can Implements <code>ScaffoldFactoryBehaviors</code> interface.
+This interface allows you to listen to the event bus and implement
+the onPressed method for back button and floating action button.
           <div class="features">read / write</div>
 </dd>
         <dt id="scaffoldKey" class="property">
@@ -218,7 +256,7 @@
           <span class="signature">&#8596; TextTheme</span> 
         </dt>
         <dd>
-          
+          Material design text theme. <a href="scaffold_factory/ScaffoldFactory/textTheme.html">[...]</a>
           <div class="features">read / write</div>
 </dd>
         <dt id="hashCode" class="property inherited">
@@ -268,7 +306,8 @@ easy configuration
           </span>
           </dt>
         <dd>
-          
+          Simple implementation of Bottom App Bar which user can use it with
+easy configuration
           
 </dd>
         <dt id="buildBottomNavigationBar" class="callable">
@@ -277,7 +316,8 @@ easy configuration
           </span>
           </dt>
         <dd>
-          
+          Simple implementation of Bottom Navigation Bar which user can use it with
+easy configuration
           
 </dd>
         <dt id="buildFloatingActionButton" class="callable">
@@ -286,7 +326,8 @@ easy configuration
           </span>
           </dt>
         <dd>
-          
+          Simple implementation of Floating Action Button which user can use it with
+easy configuration
           
 </dd>
         <dt id="buildNestedScrollView" class="callable">
@@ -295,7 +336,8 @@ easy configuration
           </span>
           </dt>
         <dd>
-          
+          Simple implementation of Nested Scroll View which user can use it with
+easy configuration
           
 </dd>
         <dt id="dispose" class="callable">
@@ -308,12 +350,12 @@ easy configuration
           
 </dd>
         <dt id="init" class="callable">
-          <span class="name"><a href="scaffold_factory/ScaffoldFactory/init.html">init</a></span><span class="signature">(<wbr>{<span class="parameter" id="init-param-backgroundType"><span class="type-annotation"><a href="scaffold_factory/BackgroundType-class.html">BackgroundType</a></span> <span class="parameter-name">backgroundType</span>: <span class="default-value">BackgroundType.normal</span>, </span> <span class="parameter" id="init-param-appBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">appBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-floatingActionButtonVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">floatingActionButtonVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-bottomNavigationBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">bottomNavigationBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-nestedAppBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">nestedAppBarVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-drawerVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">drawerVisibility</span>: <span class="default-value">false</span>, </span> <span class="parameter" id="init-param-floatingActionButton"><span class="type-annotation">Widget</span> <span class="parameter-name">floatingActionButton</span>, </span> <span class="parameter" id="init-param-floatingActionButtonLocation"><span class="type-annotation">FloatingActionButtonLocation</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span> <span class="parameter" id="init-param-appBar"><span class="type-annotation">AppBar</span> <span class="parameter-name">appBar</span>, </span> <span class="parameter" id="init-param-nestedAppBar"><span class="type-annotation">NestedScrollView</span> <span class="parameter-name">nestedAppBar</span>, </span> <span class="parameter" id="init-param-drawer"><span class="type-annotation">Widget</span> <span class="parameter-name">drawer</span>, </span> <span class="parameter" id="init-param-bottomNavigationBar"><span class="type-annotation">Widget</span> <span class="parameter-name">bottomNavigationBar</span>, </span> <span class="parameter" id="init-param-gradientBackgroundColors"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">gradientBackgroundColors</span></span> })
+          <span class="name"><a href="scaffold_factory/ScaffoldFactory/init.html">init</a></span><span class="signature">(<wbr>{<span class="parameter" id="init-param-appBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">appBarVisibility</span>, </span> <span class="parameter" id="init-param-floatingActionButtonVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">floatingActionButtonVisibility</span>, </span> <span class="parameter" id="init-param-bottomNavigationBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">bottomNavigationBarVisibility</span>, </span> <span class="parameter" id="init-param-nestedAppBarVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">nestedAppBarVisibility</span>, </span> <span class="parameter" id="init-param-drawerVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">drawerVisibility</span>, </span> <span class="parameter" id="init-param-backgroundType"><span class="type-annotation"><a href="scaffold_factory/BackgroundType-class.html">BackgroundType</a></span> <span class="parameter-name">backgroundType</span>: <span class="default-value">BackgroundType.normal</span>, </span> <span class="parameter" id="init-param-floatingActionButton"><span class="type-annotation">Widget</span> <span class="parameter-name">floatingActionButton</span>, </span> <span class="parameter" id="init-param-floatingActionButtonLocation"><span class="type-annotation">FloatingActionButtonLocation</span> <span class="parameter-name">floatingActionButtonLocation</span>, </span> <span class="parameter" id="init-param-appBar"><span class="type-annotation">AppBar</span> <span class="parameter-name">appBar</span>, </span> <span class="parameter" id="init-param-nestedAppBar"><span class="type-annotation">NestedScrollView</span> <span class="parameter-name">nestedAppBar</span>, </span> <span class="parameter" id="init-param-drawer"><span class="type-annotation">Widget</span> <span class="parameter-name">drawer</span>, </span> <span class="parameter" id="init-param-bottomNavigationBar"><span class="type-annotation">Widget</span> <span class="parameter-name">bottomNavigationBar</span>, </span> <span class="parameter" id="init-param-gradientBackgroundColors"><span class="type-annotation">List<span class="signature">&lt;<wbr><span class="type-parameter">Color</span>&gt;</span></span> <span class="parameter-name">gradientBackgroundColors</span>, </span> <span class="parameter" id="init-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span></span> })
             <span class="returntype parameter">&#8594; void</span>
           </span>
           </dt>
         <dd>
-          
+          Initialize <a href="scaffold_factory/ScaffoldFactory-class.html">ScaffoldFactory</a> with the scopes you want
           
 </dd>
         <dt id="launchURL" class="callable">
@@ -326,7 +368,7 @@ easy configuration
           
 </dd>
         <dt id="showSnackBar" class="callable">
-          <span class="name"><a href="scaffold_factory/ScaffoldFactory/showSnackBar.html">showSnackBar</a></span><span class="signature">(<wbr>{<span class="parameter" id="showSnackBar-param-messageType"><span class="type-annotation"><a href="scaffold_factory/SnackBarMessageType-class.html">SnackBarMessageType</a></span> <span class="parameter-name">messageType</span>, </span> <span class="parameter" id="showSnackBar-param-iconVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">iconVisibility</span>, </span> <span class="parameter" id="showSnackBar-param-message"><span class="type-annotation">String</span> <span class="parameter-name">message</span>: <span class="default-value">""</span>, </span> <span class="parameter" id="showSnackBar-param-duration"><span class="type-annotation">Duration</span> <span class="parameter-name">duration</span>, </span> <span class="parameter" id="showSnackBar-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>: <span class="default-value">Colors.black</span>, </span> <span class="parameter" id="showSnackBar-param-textColor"><span class="type-annotation">Color</span> <span class="parameter-name">textColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-iconColor"><span class="type-annotation">Color</span> <span class="parameter-name">iconColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-textDirection"><span class="type-annotation">TextDirection</span> <span class="parameter-name">textDirection</span>: <span class="default-value">TextDirection.ltr</span></span> })
+          <span class="name"><a href="scaffold_factory/ScaffoldFactory/showSnackBar.html">showSnackBar</a></span><span class="signature">(<wbr>{<span class="parameter" id="showSnackBar-param-messageType"><span class="type-annotation"><a href="scaffold_factory/SnackBarMessageType-class.html">SnackBarMessageType</a></span> <span class="parameter-name">messageType</span>, </span> <span class="parameter" id="showSnackBar-param-iconVisibility"><span class="type-annotation">bool</span> <span class="parameter-name">iconVisibility</span>, </span> <span class="parameter" id="showSnackBar-param-message"><span class="type-annotation">String</span> <span class="parameter-name">message</span>: <span class="default-value">""</span>, </span> <span class="parameter" id="showSnackBar-param-duration"><span class="type-annotation">Duration</span> <span class="parameter-name">duration</span>, </span> <span class="parameter" id="showSnackBar-param-backgroundColor"><span class="type-annotation">Color</span> <span class="parameter-name">backgroundColor</span>: <span class="default-value">Colors.black</span>, </span> <span class="parameter" id="showSnackBar-param-textColor"><span class="type-annotation">Color</span> <span class="parameter-name">textColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-iconColor"><span class="type-annotation">Color</span> <span class="parameter-name">iconColor</span>: <span class="default-value">Colors.white</span>, </span> <span class="parameter" id="showSnackBar-param-textDirection"><span class="type-annotation">TextDirection</span> <span class="parameter-name">textDirection</span>: <span class="default-value">TextDirection.ltr</span>, </span> <span class="parameter" id="showSnackBar-param-style"><span class="type-annotation">TextStyle</span> <span class="parameter-name">style</span></span> })
             <span class="returntype parameter">&#8594; void</span>
           </span>
           </dt>
@@ -394,6 +436,7 @@ easy configuration
       </li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBar.html">appBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/appBarVisibility.html">appBarVisibility</a></li>
+      <li><a href="scaffold_factory/ScaffoldFactory/backgroundColor.html">backgroundColor</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/backgroundType.html">backgroundType</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBar.html">bottomNavigationBar</a></li>
       <li><a href="scaffold_factory/ScaffoldFactory/bottomNavigationBarVisibility.html">bottomNavigationBarVisibility</a></li>
@@ -440,7 +483,7 @@ easy configuration
 
 <footer>
   <span class="no-break">
-    scaffold_factory 0.6.0
+    scaffold_factory 0.7.8
   </span>
 
 </footer>

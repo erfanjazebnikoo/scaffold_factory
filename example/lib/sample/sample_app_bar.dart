@@ -6,8 +6,10 @@ class SampleAppBar extends StatefulWidget {
   _SampleAppBarState createState() => _SampleAppBarState();
 }
 
+/// Your state class can Implements [ScaffoldFactoryBehaviors] interface
 class _SampleAppBarState extends State<SampleAppBar>
     implements ScaffoldFactoryBehaviors {
+  /// Define these private variables inside your widget.
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   ScaffoldFactory _scaffoldFactory;
   MaterialPalette _sampleColorPalette = MaterialPalette(

@@ -97,13 +97,13 @@ Widget _buildBody(BuildContext context) {
 * Easily create a material interface with simple configurations.
 * There is an implementation for each of scaffold's widget like the ``AppBar``, ``BottomNavigationBar``, ``FloatingActionButton``, etc.
 
-| Method | Description |
+| Method | Output |
 | ------ | ------ |
-| buildAppBar | Return an `AppBar` widget |
-| buildNestedScrollView | Return an `NestedScrollView` widget |
-| buildBottomNavigationBar | Return an `BottomNavigationBar` widget |
-| buildBottomAppBar | Return an `BottomAppBar` widget |
-| buildFloatingActionButton | Return an `FloatingActionButton` widget |
+| buildAppBar | `AppBar` widget |
+| buildNestedScrollView | `NestedScrollView` widget |
+| buildBottomNavigationBar | `BottomNavigationBar` widget |
+| buildBottomAppBar | `BottomAppBar` widget |
+| buildFloatingActionButton | `FloatingActionButton` widget |
 
 * You can change the visibility of scaffold's widgets and pass your custom widget in the ``init`` method 
 ```dart

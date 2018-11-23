@@ -43,11 +43,116 @@
   <div class="col-xs-12 col-sm-9 col-md-8 main-content">
       <section class="desc markdown">
         <h1 id="scaffold-factory">Scaffold Factory</h1>
+<p><a href="https://pub.dartlang.org/packages/scaffold_factory"><img alt="Pub" src="https://img.shields.io/pub/v/scaffold_factory.svg"></a></p>
 <p>A Flutter plugin to build and customize the Flutter's scaffold widget with simple and flexible configurations. Also, this plugin provides various implementations of useful widgets that can be used in UI design. The scaffold is a class provides APIs for showing drawers, snack bars, and bottom sheets. </p>
-<h2 id="getting-started">Getting Started</h2>
-<p>For help getting started with Flutter, view our online
-<a href="https://flutter.io/">documentation</a>.</p>
-<p>For help on editing plugin code, view the <a href="https://flutter.io/developing-packages/#edit-plugin-package">documentation</a>.</p>
+<h2 id="how-to-use">How to use</h2>
+<h3 id="import-the-package">Import the package</h3>
+<p>To use this plugin, add <code>scaffold_factory</code> as a <a href="https://flutter.io/docs/development/packages-and-plugins/using-packages">dependency in your pubspec.yaml file</a>. Also, You can use <a href="https://pub.dartlang.org/packages/scaffold_factory#-installing-tab-">Dart packages' install instruction for this package</a>.</p>
+<h3 id="use-the-plugin">Use the plugin</h3>
+<p>1- Add the following import to your Dart code:</p>
+<pre class="language-dart"><code class="language-dart">import 'package:scaffold_factory/scaffold_factory.dart';
+</code></pre>
+<p>2- Define these private variables inside your widget.</p>
+<pre class="language-dart"><code class="language-dart">final _scaffoldKey = GlobalKey&lt;ScaffoldState&gt;();
+ScaffoldFactory _scaffoldFactory;
+MaterialPalette _sampleColorPalette = MaterialPalette(
+  primaryColor: Colors.teal,
+  accentColor: Colors.pinkAccent,
+);
+</code></pre>
+<p>3- Your state class can Implements <code>ScaffoldFactoryBehaviors</code> interface:</p>
+<pre class="language-dart"><code class="language-dart">class _ExampleScaffoldFactoryState extends State&lt;ExampleScaffoldFactory&gt; implements ScaffoldFactoryBehaviors {
+  
+  // body
+ 
+  @override
+  void onBackButtonPressed() {
+    print("Scaffold Factory =&gt; onBackButtonPressed()");
+  }
+
+  @override
+  void onFloatingActionButtonPressed() {
+    print("Scaffold Factory =&gt; onFloatingActionButtonPressed()");
+  }
+
+  @override
+  Future onEventBusMessageReceived(event) async {
+    print("ScaffoldFactory: Event Received");
+  }
+}    
+</code></pre>
+<p>4- Initialize ScaffoldFactory with the scopes you want:</p>
+<pre class="language-dart"><code class="language-dart"> @override
+  void initState() {
+    super.initState();
+    _initScaffoldFactory();
+  }
+  
+  void _initScaffoldFactory() {
+    _scaffoldFactory = ScaffoldFactory(
+      scaffoldKey: _scaffoldKey,
+      materialPalette: _sampleColorPalette,
+    );
+    _scaffoldFactory.scaffoldFactoryBehavior = this;
+
+    _scaffoldFactory.init(
+      backgroundType: BackgroundType.normal,
+      appBarVisibility: false,
+      floatingActionButtonVisibility: false,
+      drawerVisibility: false,
+      nestedAppBarVisibility: false,
+      bottomNavigationBarVisibility: false,
+    );
+  }
+</code></pre>
+<p>5- Pass the body widget to <code>build</code> method of your <code>_scaffoldFactory</code> object and define your theme of texts:</p>
+<pre class="language-dart"><code class="language-dart">@override
+Widget build(BuildContext context) {
+  _scaffoldFactory.textTheme = Theme.of(context).textTheme;
+
+  return _scaffoldFactory.build(_buildBody(context));
+}
+
+Widget _buildBody(BuildContext context) {
+  // return your body widget    
+}
+
+</code></pre>
+<h2 id="features">Features</h2><ul><li>Easily create a material interface with simple configurations.</li><li>There is an implementation for each of scaffold's widget like the <code>AppBar</code>, <code>BottomNavigationBar</code>, <code>FloatingActionButton</code>, etc.</li></ul><table><thead><tr><th>Method</th><th>Output</th></tr></thead><tbody><tr><td>buildAppBar</td><td>An <code>AppBar</code> widget</td></tr><tr><td>buildNestedScrollView</td><td>A <code>NestedScrollView</code> widget</td></tr><tr><td>buildBottomNavigationBar</td><td>A <code>BottomNavigationBar</code> widget</td></tr><tr><td>buildBottomAppBar</td><td>A <code>BottomAppBar</code> widget</td></tr><tr><td>buildFloatingActionButton</td><td>A <code>FloatingActionButton</code> widget</td></tr></tbody></table><ul><li>You can change the visibility of scaffold's widgets and pass your custom widget in the <code>init</code> method </li></ul>
+<pre class="language-dart"><code class="language-dart"> _scaffoldFactory.init(
+      appBarVisibility: true,
+      appBar: _scaffoldFactory.buildAppBar(
+        titleVisibility: true,
+        leadingVisibility: false,
+        tabBarVisibility: false,
+        titleWidget: Text('Scaffol Factory Example'),
+        backgroundColor: _scaffoldFactory.colorPalette.primaryColor,
+      ),
+    );
+</code></pre>
+<p>or whenever you want in the <code>build</code> method of your state.</p>
+<pre class="language-dart"><code class="language-dart">@override
+Widget build(BuildContext context) {
+  _scaffoldFactory.textTheme = Theme.of(context).textTheme;
+  
+  _scaffoldFactory.appBarVisibility = true;
+  _scaffoldFactory.appBar = _scaffoldFactory.buildAppBar(
+      titleVisibility: true,
+      leadingVisibility: false,
+      tabBarVisibility: false,
+      titleWidget: Text('Scaffol Factory Example'),
+      backgroundColor: _scaffoldFactory.colorPalette.primaryColor,
+    );
+
+  return _scaffoldFactory.build(_buildBody(context));
+}
+</code></pre>
+<h2 id="example">Example</h2>
+<p>There are two examples in the <a href="https://github.com/erfanjazebnikoo/scaffold_factory/tree/master/example">example application</a> package. </p>
+<p><a href="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_example1_hq.jpg"><img alt="Solid" src="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_example1_lq.jpg"></a>
+<a href="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_catalog_hq.jpg"><img alt="Solid" src="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_catalog_lq.jpg"></a>
+<a href="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_bnb_hq.jpg"><img alt="Solid" src="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_bnb_lq.jpg"></a>
+<a href="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_ab_hq.jpg"><img alt="Solid" src="http://www.erfanjazebnikoo.com/downloads/scaffold_factory/scaffold_factory_ab_lq.jpg"></a></p>
       </section>
       
         <section class="summary">
@@ -72,7 +177,7 @@
 
 <footer>
   <span class="no-break">
-    scaffold_factory 0.6.0
+    scaffold_factory 0.7.8
   </span>
 
 </footer>
