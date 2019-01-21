@@ -1,3 +1,7 @@
+## 0.7.9
+
+* Modify `scaffold_factory.dart` file and improve methods
+
 ## 0.7.8
 
 * Modify `example.dart` file and simplify body widget
