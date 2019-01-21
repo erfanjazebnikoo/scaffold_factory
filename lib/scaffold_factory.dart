@@ -226,6 +226,7 @@ class ScaffoldFactory {
   /// Simple implementation of App Bar which user can use it with
   /// easy configuration
   AppBar buildAppBar({
+    Key key,
     @required bool titleVisibility,
     @required bool leadingVisibility,
     @required bool tabBarVisibility,
@@ -236,15 +237,26 @@ class ScaffoldFactory {
     bool scrollableTab,
     TabController tabController,
     List<Widget> tabWidgetList,
+    double titleSpacing,
+    List<Widget> actions,
+    double elevation,
+    double toolbarOpacity,
+    double bottomOpacity,
   }) {
     bool useFlexible =
         !titleVisibility && !leadingVisibility && tabBarVisibility;
     return AppBar(
+      key: key,
       backgroundColor: backgroundColor,
       automaticallyImplyLeading: false,
       leading: leadingVisibility ? leadingWidget : null,
       title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
+      titleSpacing: titleSpacing,
+      actions: actions,
+      elevation: elevation,
+      toolbarOpacity: toolbarOpacity,
+      bottomOpacity: bottomOpacity,
       flexibleSpace: useFlexible
           ? Container(
               alignment: Alignment.bottomCenter,
@@ -270,26 +282,34 @@ class ScaffoldFactory {
   /// Simple implementation of Nested Scroll View which user can use it with
   /// easy configuration
   NestedScrollView buildNestedScrollView({
+    Key key,
     @required bool titleVisibility,
     @required bool leadingVisibility,
     @required bool tabBarVisibility,
     @required Widget bodyWidget,
     bool scrollableTab,
     List<Widget> tabWidgetList,
+    List<Widget> actions,
     TabController tabController,
     Widget titleWidget,
     Widget leadingWidget,
     Color backgroundColor,
     bool centerTitle = false,
     bool floating = false,
+    double titleSpacing,
+    bool snap,
   }) {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
         return <Widget>[
           SliverAppBar(
+            key: key,
             backgroundColor: backgroundColor,
             leading: leadingVisibility ? leadingWidget : null,
             title: titleVisibility ? titleWidget : null,
+            actions: actions,
+            titleSpacing: titleSpacing,
+            snap: snap,
             bottom: tabBarVisibility
                 ? TabBar(
                     isScrollable: scrollableTab,
@@ -313,16 +333,22 @@ class ScaffoldFactory {
   /// Simple implementation of Bottom Navigation Bar which user can use it with
   /// easy configuration
   Widget buildBottomNavigationBar({
+    Key key,
     @required List<BottomNavigationBarItem> items,
     @required ValueChanged<int> onTap,
     int currentIndex = 0,
     Color color,
+    double iconSize,
+    BottomNavigationBarType type,
   }) {
     return BottomNavigationBar(
       onTap: onTap,
       currentIndex: currentIndex,
       items: items,
       fixedColor: color,
+      iconSize: iconSize,
+      type: type,
+      key: key,
     );
   }
 
@@ -345,12 +371,13 @@ class ScaffoldFactory {
 
   /// Simple implementation of Floating Action Button which user can use it with
   /// easy configuration
-  FloatingActionButton buildFloatingActionButton(
-      {@required Widget fabBody,
-      String tooltip = "",
-      String heroTag = "",
-      Color backgroundColor,
-      bool mini = false}) {
+  FloatingActionButton buildFloatingActionButton({
+    @required Widget fabBody,
+    String tooltip = "",
+    String heroTag = "",
+    Color backgroundColor,
+    bool mini = false,
+  }) {
     return FloatingActionButton(
       heroTag: heroTag,
       onPressed: () =>
