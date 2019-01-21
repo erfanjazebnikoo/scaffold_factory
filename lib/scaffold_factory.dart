@@ -237,11 +237,7 @@ class ScaffoldFactory {
     bool scrollableTab,
     TabController tabController,
     List<Widget> tabWidgetList,
-    double titleSpacing,
     List<Widget> actions,
-    double elevation,
-    double toolbarOpacity,
-    double bottomOpacity,
   }) {
     bool useFlexible =
         !titleVisibility && !leadingVisibility && tabBarVisibility;
@@ -252,11 +248,7 @@ class ScaffoldFactory {
       leading: leadingVisibility ? leadingWidget : null,
       title: titleVisibility ? titleWidget : null,
       centerTitle: centerTitle,
-      titleSpacing: titleSpacing,
       actions: actions,
-      elevation: elevation,
-      toolbarOpacity: toolbarOpacity,
-      bottomOpacity: bottomOpacity,
       flexibleSpace: useFlexible
           ? Container(
               alignment: Alignment.bottomCenter,
@@ -296,8 +288,6 @@ class ScaffoldFactory {
     Color backgroundColor,
     bool centerTitle = false,
     bool floating = false,
-    double titleSpacing,
-    bool snap,
   }) {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool boxIsScrolled) {
@@ -308,8 +298,6 @@ class ScaffoldFactory {
             leading: leadingVisibility ? leadingWidget : null,
             title: titleVisibility ? titleWidget : null,
             actions: actions,
-            titleSpacing: titleSpacing,
-            snap: snap,
             bottom: tabBarVisibility
                 ? TabBar(
                     isScrollable: scrollableTab,

@@ -1,4 +1,4 @@
-## 0.7.9
+## 0.7.9+1
 
 * Modify `scaffold_factory.dart` file and improve methods
 
