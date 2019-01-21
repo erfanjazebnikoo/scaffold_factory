@@ -1,6 +1,6 @@
 name: scaffold_factory
 description: A Flutter plugin to build and customize the Flutter's scaffold widget with simple and flexible configurations.
-version: 0.7.9
+version: 0.7.9+1
 author: Erfan Jazeb Nikoo <erfan.jazebnikoo@gmail.com>
 homepage: https://github.com/erfanjazebnikoo/scaffold_factory
 
