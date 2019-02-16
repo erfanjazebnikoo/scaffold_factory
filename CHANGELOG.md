@@ -1,6 +1,7 @@
-## 0.8.0
+## 0.8.1
 
 * Fixed some bugs of EventBus
+* Deleted event bus file and added it to scaffold factory with public access
 
 ## 0.7.9+1
 
