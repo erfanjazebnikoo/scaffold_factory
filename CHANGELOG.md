@@ -1,3 +1,7 @@
+## 0.8.0
+
+* Fixed some bugs of EventBus
+
 ## 0.7.9+1
 
 * Modify `scaffold_factory.dart` file and improve methods
@@ -98,10 +102,6 @@
 * Create sample_floating_action_button
 
 ## 0.1.4
-
-* Add Floating action button support
-
-## 0.1.3
 
 * Add Floating action button support
 

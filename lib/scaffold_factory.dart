@@ -133,7 +133,7 @@ class ScaffoldFactory {
   Widget drawer;
 
   /// Event Bus
-  StreamSubscription _eventBusSubscription;
+  StreamSubscription eventBusSubscription;
 
   factory ScaffoldFactory(
           {@required GlobalKey<ScaffoldState> scaffoldKey,
@@ -148,7 +148,7 @@ class ScaffoldFactory {
       {@required this.scaffoldKey,
       @required this.colorPalette,
       dynamic event}) {
-    _eventBusSubscription = eventBus.on<dynamic>().listen((event) async {
+    eventBusSubscription = eventBus.on<dynamic>().listen((event) async {
       if (event != null)
         this.scaffoldFactoryBehavior.onEventBusMessageReceived(event);
     });
@@ -394,7 +394,7 @@ class ScaffoldFactory {
   }
 
   void dispose() {
-    _eventBusSubscription.cancel();
+    eventBusSubscription.cancel();
   }
 
   void showSnackBar({
@@ -471,7 +471,7 @@ abstract class ScaffoldFactoryBehaviors {
 
   void onFloatingActionButtonPressed();
 
-  Future onEventBusMessageReceived(dynamic event);
+  void onEventBusMessageReceived(dynamic event);
 }
 
 enum BackgroundType {
