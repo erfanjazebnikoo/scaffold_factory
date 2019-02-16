@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:event_bus/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
-import 'package:scaffold_factory/event_bus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 /// This is a Flutter plugin to build and customize the Flutter's scaffold
@@ -133,6 +133,9 @@ class ScaffoldFactory {
   Widget drawer;
 
   /// Event Bus
+
+  /// The global [EventBus] object.
+  EventBus eventBus = EventBus();
   StreamSubscription eventBusSubscription;
 
   factory ScaffoldFactory(
