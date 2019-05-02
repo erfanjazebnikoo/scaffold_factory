@@ -4,6 +4,17 @@
 
 A Flutter plugin to build and customize the Flutter's scaffold widget with simple and flexible configurations. Also, this plugin provides various implementations of useful widgets that can be used in UI design. The scaffold is a class provides APIs for showing drawers, snack bars, and bottom sheets. 
 
+With Scaffold Factory Plugin you can:
+
+- Build a beautiful screen with easy steps.
+- Create and customize an App bar, Bottom navigation Bar, Floating Action Button and other materials widget using many defined methods.
+- Customize and show the Snack Bar with a simple method.
+- Launch URL in a web browser with a simple method.
+- Implement material color palette for scaffold and use it whenever you want.
+- Fire and handle any types of events using the Event Bus between widgets which use the same scaffold factory.
+
+Also, you can pass the Scaffold Factory to your widgets or routes and, use whatever you need about context, color palette or other widgets.
+
 ## How to use
 ### Import the package
 To use this plugin, add ``scaffold_factory`` as a [dependency in your pubspec.yaml file][dependency]. Also, You can use [Dart packages' install instruction for this package][scaffold_factory_dart_packages].
