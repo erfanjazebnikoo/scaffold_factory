@@ -1,3 +1,9 @@
+## 0.8.2
+
+* Migrate from the deprecated original Android Support Library to AndroidX. This shouldn't result in any functional changes, but it requires any Android apps using this plugin to also migrate if they're using the original support library.
+* Update url_launcher plugin
+* Fix snack bar problem when icon is visible
+
 ## 0.8.1
 
 * Fixed some bugs of EventBus

@@ -446,13 +446,10 @@ class ScaffoldFactory {
             content: Directionality(
               textDirection: textDirection,
               child: iconVisibility
-                  ? Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Icon(icon, color: iconColor),
-                        SizedBox(width: 4.0),
-                        text,
-                      ],
+                  ? ListTile(
+                      contentPadding: EdgeInsets.all(0),
+                      leading: Icon(icon, color: iconColor),
+                      title: text,
                     )
                   : text,
             ),
